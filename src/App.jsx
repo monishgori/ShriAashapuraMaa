@@ -182,7 +182,7 @@ function App() {
     }
   }, []);
 
-  const backgroundImage = '/assets/images/background.jpg';
+  const backgroundImage = '/assets/images/bgimg.png';
 
   // Background Slider & Time-based Greeting
   const getGreeting = () => {
