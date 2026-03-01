@@ -523,7 +523,9 @@ function App() {
         {/* Top Bar */}
         <header className="top-bar">
           <div className="divine-centerpiece">
-            <div className="divine-name">BOLO SHRI AASHAPURA MAA NI JAI</div>
+            <div className="divine-name">
+              {language === 'gujarati' ? 'બોલો શ્રી આશાપુરા મા ની જય' : 'बोलो श्री आशापुरा माँ की जय'}
+            </div>
           </div>
 
           <div className="top-bar-side-content">
