@@ -194,7 +194,7 @@ function App() {
     } else {
       if (hour < 12) return "शुभ प्रभात";
       if (hour < 17) return "शुभ दोपहर";
-      return "ॐ श्री आशापुरा मातु नमः";
+      return "शुभ संध्या";
     }
   };
 
