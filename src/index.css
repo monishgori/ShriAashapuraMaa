@@ -1,20 +1,19 @@
 :root {
-  --primary: hsl(350, 80%, 45%);
-  /* Deep Red */
-  --secondary: hsl(0, 0%, 95%);
-  /* Crisp White */
-  --accent: hsl(355, 90%, 65%);
-  /* Bright Red Accent */
-  --bg-dark: hsl(0, 0%, 4%);
-  /* Deep background for contrast */
-  --glass: hsla(0, 0%, 100%, 0.05);
-  --glass-heavy: hsla(0, 0%, 0%, 0.85);
-  --glass-border: hsla(0, 0%, 100%, 0.12);
+  --primary: hsl(25, 100%, 50%);
+  /* Saffron */
+  --secondary: hsl(45, 100%, 60%);
+  /* Gold */
+  --accent: hsl(0, 100%, 50%);
+  /* Vermillion */
+  --bg-dark: hsl(20, 30%, 5%);
+  /* Warm Dark */
+  --glass: hsla(25, 100%, 50%, 0.1);
+  --glass-heavy: hsla(0, 0%, 0%, 0.9);
+  --glass-border: hsla(45, 100%, 50%, 0.3);
   --text-primary: #ffffff;
-  --text-secondary: hsl(0, 0%, 90%);
-  /* Lighter text secondary */
-  --shadow-gold: 0 0 30px hsla(350, 80%, 50%, 0.3);
-  /* Reddish Shadow */
+  --text-secondary: hsl(45, 100%, 85%);
+  --shadow-gold: 0 0 40px hsla(45, 100%, 50%, 0.25);
+  --temple-red: #8B0000;
 }
 
 * {
@@ -196,17 +195,29 @@ body {
 
 .divine-name {
   font-family: 'Tiro Devanagari Hindi', serif;
-  font-size: clamp(1.6rem, 7vw, 2.8rem);
+  font-size: clamp(1.8rem, 8vw, 3.2rem);
   font-weight: 800;
-  background: linear-gradient(to bottom, #FFFFFF 0%, #FFB3B3 100%);
+  background: linear-gradient(to bottom, #FFD700 0%, #FF8C00 50%, #FF4500 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 15px rgba(255, 50, 50, 0.5));
+  filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.6));
   animation: divine-pulse 4s infinite ease-in-out;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   white-space: nowrap;
-  margin-top: 5px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.divine-name::after {
+  content: '🕉️';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  -webkit-text-fill-color: var(--secondary);
+  opacity: 0.8;
 }
 
 .top-bar-side-content {
@@ -424,27 +435,27 @@ body {
 }
 
 .verse {
-  margin: 0 auto 30px auto;
-  padding: 24px;
+  margin: 0 auto 35px auto;
+  padding: 30px;
   width: 100%;
   max-width: 650px;
-  border-radius: 24px;
-  background: hsla(0, 0%, 100%, 0.03);
-  border: 1px solid hsla(0, 0%, 100%, 0.05);
-  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.08), rgba(139, 0, 0, 0.15));
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
   cursor: pointer;
   position: relative;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .verse.active-verse {
-  border: 1px solid var(--secondary);
-  background: hsla(28, 100%, 50%, 0.1);
-  transform: scale(1.02) translateY(-5px);
+  border: 2px solid var(--secondary);
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.2), rgba(139, 0, 0, 0.35));
+  transform: scale(1.03) translateY(-8px);
   box-shadow:
-    0 20px 40px hsla(0, 0%, 0%, 0.4),
-    0 0 30px hsla(45, 100%, 50%, 0.2),
-    inset 0 0 15px hsla(45, 100%, 50%, 0.1);
+    0 25px 50px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(255, 140, 0, 0.3);
   animation: verse-float 4s infinite ease-in-out;
   z-index: 2;
 }
@@ -598,8 +609,8 @@ body.tray-open {
 
 .library-card {
   position: relative;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.15), rgba(139, 0, 0, 0.25));
+  border: 1px solid rgba(255, 215, 0, 0.2);
   border-radius: 24px;
   padding: 22px 15px;
   display: flex;
@@ -610,18 +621,30 @@ body.tray-open {
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
   text-decoration: none;
   outline: none;
   width: 100%;
 }
 
+.library-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M20 5l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z' fill='%23FFD700' fill-opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.3;
+  pointer-events: none;
+}
+
 .library-card:hover,
 .library-card:active {
-  transform: translateY(-5px) scale(1.02);
-  background: rgba(255, 0, 0, 0.12);
+  transform: translateY(-8px) scale(1.04);
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.25), rgba(139, 0, 0, 0.4));
   border-color: var(--secondary);
-  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+  box-shadow: 0 15px 35px rgba(255, 140, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.2);
 }
 
 .library-card-wide {
