@@ -1,9 +1,9 @@
 export const aartis = [
     {
         id: "a1",
-        name: "Aashapura Maa Aarti",
-        gujarati: "Aashapura Maa Aarti",
-        hindi: "Aashapura Maa Aarti",
+        name: "MAA ni aarti",
+        gujarati: "મા ની આરતી",
+        hindi: "माँ की आरती",
         audio: "/assets/audio/om.mp3"
     }
 ];

@@ -1,8 +1,8 @@
 export const historyData = {
     lifeStory: {
         title: {
-            gujarati: "ॐ",
-            hindi: "ॐ"
+            gujarati: "મા નો ઇતિહાસ",
+            hindi: "माँ का इतिहास"
         },
         content: [
             {

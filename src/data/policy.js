@@ -13,8 +13,8 @@ export const policyData = {
                 english: "About Us"
             },
             text: {
-                gujarati: "શ્રી સોદેવપીર પૂજા એપ ભક્તો માટે બનાવવામાં આવી છે. આ એપનો મુખ્ય હેતુ ભક્તિ અને સાધનામાં મદદરૂપ થવાનો છે.",
-                hindi: "श्री सोदेवपीर पूजा ऐप भक्तों के लिए बनाया गया है। इस ऐप का मुख्य उद्देश्य भक्ति और साधना में मदद करना है।",
+                gujarati: "શ્રી આશાપુરા મા પૂજા એપ ભક્તો માટે બનાવવામાં આવી છે. આ એપનો મુખ્ય હેતુ ભક્તિ અને સાધનામાં મદદરૂપ થવાનો છે.",
+                hindi: "श्री आशापुरा माँ पूजा ऐप भक्तों के लिए बनाया गया है। इस ऐप का मुख्य उद्देश्य भक्ति और साधना में मदद करना है।",
                 english: "Shri Aashapura Pooja app is designed for devotees. The main purpose of this app is to assist in devotion and spiritual practice."
             }
         },

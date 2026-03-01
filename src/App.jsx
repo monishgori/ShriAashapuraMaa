@@ -33,7 +33,7 @@ const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, languag
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('chalisa'); }}>
             <span className="lib-icon">📜</span>
             <span className="lib-hindi">
-              {language === 'gujarati' ? 'સોદેવ ચાલીસા' : 'सोदेव चालीसा'}
+              {language === 'gujarati' ? 'મા ની ચાલીસા' : 'माँ की चालीसा'}
             </span>
             <span className="lib-eng">CHALISA</span>
           </button>
@@ -54,21 +54,21 @@ const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, languag
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('aartis'); }}>
             <span className="lib-icon">🕯️</span>
             <span className="lib-hindi">
-              {language === 'gujarati' ? 'સોદેવ આરતી' : 'सोदेव आरती'}
+              {language === 'gujarati' ? 'મા ની આરતી' : 'माँ की आरती'}
             </span>
             <span className="lib-eng">AARTI</span>
           </button>
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('stutis'); }}>
             <span className="lib-icon">🙌</span>
             <span className="lib-hindi">
-              {language === 'gujarati' ? 'સોદેવ સ્તુતિ' : 'सोदेव સ્તુતિ'}
+              {language === 'gujarati' ? 'મા ની સ્તુતિ' : 'माँ की स्तुति'}
             </span>
             <span className="lib-eng">STUTI</span>
           </button>
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('history'); }}>
             <span className="lib-icon">🏺</span>
             <span className="lib-hindi">
-              {language === 'gujarati' ? 'જીવન ચરિત્ર' : 'जीवन चरित्र'}
+              {language === 'gujarati' ? 'મા નો ઇતિહાસ' : 'माँ का इतिहास'}
             </span>
             <span className="lib-eng">HISTORY</span>
           </button>
@@ -245,8 +245,8 @@ function App() {
   const shareApp = () => {
     if (navigator.share) {
       navigator.share({
-        title: 'SODEV POOJA',
-        text: 'Download SODEV POOJA app for Chalisa, Mantras and Bhajans!',
+        title: 'Aashapura Maa Pooja',
+        text: 'Download Aashapura Maa Pooja app for Chalisa, Mantras and Bhajans!',
         url: window.location.href,
       }).catch(console.error);
     } else {
@@ -516,7 +516,7 @@ function App() {
 
         {/* Background Section */}
         <div className="background-slider" onClick={() => setIsLyricsVisible(false)}>
-          <img src={backgroundImage} alt="SODEV" className="bg-image active" />
+          <img src={backgroundImage} alt="MAA" className="bg-image active" />
           <div className="bg-overlay"></div>
         </div>
 
@@ -712,31 +712,31 @@ function App() {
             <div className="page-header">
               <div className="page-title">
                 {language === 'gujarati' ? (
-                  currentMode === 'chalisa' ? 'સોદેવ ચાલીસા' :
+                  currentMode === 'chalisa' ? 'મા ની ચાલીસા' :
                     currentMode === 'mantras' ? 'સિદ્ધ મંત્ર સંગ્રહ' :
                       currentMode === 'bhajans' ? 'ભજન સંગ્રહ' :
-                        currentMode === 'aartis' ? 'સોદેવ આરતી' :
-                          currentMode === 'stutis' ? 'સોદેવ સ્તુતિ' :
+                        currentMode === 'aartis' ? 'મા ની આરતી' :
+                          currentMode === 'stutis' ? 'મા ની સ્તુતિ' :
                             currentMode === 'history' ? (
-                              historyView === 'menu' ? 'શ્રી સોદેવપીર ઇતિહાસ' :
-                                historyView === 'lifeStory' ? 'શ્રી સોદેવપીર જીવન ચરિત્ર' :
-                                  historyView === 'incidentDetail' && activeIncidentIndex !== null ? historyData.incidents[activeIncidentIndex].title[language] : 'દાદાના ચમત્કારો'
+                              historyView === 'menu' ? 'મા નો ઇતિહાસ' :
+                                historyView === 'lifeStory' ? 'મા નું જીવન ચરિત્ર' :
+                                  historyView === 'incidentDetail' && activeIncidentIndex !== null ? historyData.incidents[activeIncidentIndex].title[language] : 'માના ચમત્કારો'
                             ) :
-                              currentMode === 'videos' ? 'સોદેવપીર દર્શન' :
-                                currentMode === 'policy' ? 'ગોપનીયતા નીતિ' : 'સોદેવ પૂજા'
+                              currentMode === 'videos' ? 'મા ના દર્શન' :
+                                currentMode === 'policy' ? 'ગોપનીયતા નીતિ' : 'માતાજી ની પૂજા'
                 ) : (
-                  currentMode === 'chalisa' ? 'सोदेव चालीसा' :
+                  currentMode === 'chalisa' ? 'माँ की चालीसा' :
                     currentMode === 'mantras' ? 'सिद्ध मंत्र संग्रह' :
                       currentMode === 'bhajans' ? 'भजन संग्रह' :
-                        currentMode === 'aartis' ? 'सोदेव आरती' :
-                          currentMode === 'stutis' ? 'सोदेव स्तुति' :
+                        currentMode === 'aartis' ? 'माँ की आरती' :
+                          currentMode === 'stutis' ? 'माँ की स्तुति' :
                             currentMode === 'history' ? (
-                              historyView === 'menu' ? 'श्री सोदेवपीर इतिहास' :
-                                historyView === 'lifeStory' ? 'श्री सोदेवपीर जीवन चरित्र' :
-                                  historyView === 'incidentDetail' && activeIncidentIndex !== null ? historyData.incidents[activeIncidentIndex].title[language] : 'दादा के चमत्कार'
+                              historyView === 'menu' ? 'माँ का इतिहास' :
+                                historyView === 'lifeStory' ? 'माँ का जीवन चरित्र' :
+                                  historyView === 'incidentDetail' && activeIncidentIndex !== null ? historyData.incidents[activeIncidentIndex].title[language] : 'माँ के चमत्कार'
                             ) :
-                              currentMode === 'videos' ? 'सोदेवपीर दर्शन' :
-                                currentMode === 'policy' ? 'गोपनीयता नीति' : 'सोदेव पूजा'
+                              currentMode === 'videos' ? 'माँ के दर्शन' :
+                                currentMode === 'policy' ? 'गोपनीयता नीति' : 'माँ की पूजा'
                 )}
               </div>
               <div className="page-subtitle">
@@ -823,7 +823,7 @@ function App() {
                       <button className="history-menu-card glass-panel" onClick={() => { setHistoryView('incidents'); triggerHaptic(ImpactStyle.Medium); }}>
                         <div className="menu-card-icon">✨</div>
                         <div className="menu-card-content">
-                          <div className="menu-card-title">{language === 'gujarati' ? 'દાદાના ચમત્કારો' : 'दादा के चमत्कार'}</div>
+                          <div className="menu-card-title">{language === 'gujarati' ? 'મા ના ચમત્કારો' : 'माँ के चमत्कार'}</div>
                           <div className="menu-card-subtitle">True Incidents Index</div>
                         </div>
                       </button>
