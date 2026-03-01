@@ -86,7 +86,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 20%;
+  object-position: 50% 42%;
   transition: opacity 3s ease-in-out;
   opacity: 0;
   filter: brightness(0.8);
@@ -466,7 +466,7 @@ body {
   position: fixed;
   bottom: 0;
   /* Universal Gap: Ensures room for AdMob banner on ALL phone sizes */
-  padding-bottom: 60px;
+  padding-bottom: 15px;
   left: 0;
   width: 100%;
   z-index: 1000;
