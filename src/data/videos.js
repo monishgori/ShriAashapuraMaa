@@ -57,7 +57,7 @@ export const videos = [
   },
   {
     id: 8,
-    title: "Shree Sodevpir Dada Bhajan - Jigar Dama",
+    title: "Shree Aashapura Dada Bhajan - Jigar Dama",
     gujarati: "શ્રી સોદેવપીર દાદા ભજન - જીગર દામા",
     hindi: "श्री सोदेवपीर दादा भजन - जिगर दामा",
     youtubeId: "l2VPfJg0gAs",
@@ -65,7 +65,7 @@ export const videos = [
   },
   {
     id: 9,
-    title: "Shree Sodevpir Dada Kori",
+    title: "Shree Aashapura Dada Kori",
     gujarati: "શ્રી સોદેવપીર દાદા કોરી",
     hindi: "श्री सोदेवपीर दादा कोरी",
     youtubeId: "iHm1lh-H1JM",
@@ -73,7 +73,7 @@ export const videos = [
   },
   {
     id: 10,
-    title: "Shree Sodevpir Dada Na Bhajan - Jigar Dama",
+    title: "Shree Aashapura Dada Na Bhajan - Jigar Dama",
     gujarati: "શ્રી સોદેવપીર દાદા ના ભજન - જીગર દામા",
     hindi: "श्री सोदेवपीर दादा के भजन - जिगर दामा",
     youtubeId: "SZRCJFBEEcA",
@@ -82,7 +82,7 @@ export const videos = [
 
   {
     id: 11,
-    title: "Shree Sodevpir Dada Kori 3",
+    title: "Shree Aashapura Dada Kori 3",
     gujarati: "શ્રી સોદેવપીર દાદા કોરી ૩",
     hindi: "श्री सोदेवपीर दादा कोरी ३",
     youtubeId: "QQX7Y6zUBIU",
@@ -90,7 +90,7 @@ export const videos = [
   },
   {
     id: 12,
-    title: "Shree Sodevpir Dada Kori 2",
+    title: "Shree Aashapura Dada Kori 2",
     gujarati: "શ્રી સોદેવપીર દાદા કોરી ૨",
     hindi: "श्री सोदेवपीर दादा कोरी ૨",
     youtubeId: "9psE9oAjraE",

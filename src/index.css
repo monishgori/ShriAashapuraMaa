@@ -1,14 +1,20 @@
 :root {
-  --primary: hsl(28, 100%, 60%);
-  --secondary: hsl(45, 100%, 55%);
-  --accent: hsl(50, 100%, 70%);
+  --primary: hsl(350, 80%, 45%);
+  /* Deep Red */
+  --secondary: hsl(0, 0%, 95%);
+  /* Crisp White */
+  --accent: hsl(355, 90%, 65%);
+  /* Bright Red Accent */
   --bg-dark: hsl(0, 0%, 4%);
+  /* Deep background for contrast */
   --glass: hsla(0, 0%, 100%, 0.05);
   --glass-heavy: hsla(0, 0%, 0%, 0.85);
   --glass-border: hsla(0, 0%, 100%, 0.12);
   --text-primary: #ffffff;
-  --text-secondary: hsl(0, 0%, 80%);
-  --shadow-gold: 0 0 30px hsla(45, 100%, 50%, 0.2);
+  --text-secondary: hsl(0, 0%, 90%);
+  /* Lighter text secondary */
+  --shadow-gold: 0 0 30px hsla(350, 80%, 50%, 0.3);
+  /* Reddish Shadow */
 }
 
 * {
@@ -192,11 +198,11 @@ body {
   font-family: 'Tiro Devanagari Hindi', serif;
   font-size: clamp(1.6rem, 7vw, 2.8rem);
   font-weight: 800;
-  background: linear-gradient(to bottom, #FFD700 0%, #FF9933 100%);
+  background: linear-gradient(to bottom, #FFFFFF 0%, #FFB3B3 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
+  filter: drop-shadow(0 0 15px rgba(255, 50, 50, 0.5));
   animation: divine-pulse 4s infinite ease-in-out;
   letter-spacing: 1px;
   white-space: nowrap;
@@ -244,12 +250,12 @@ body {
   0%,
   100% {
     transform: scale(1);
-    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+    filter: drop-shadow(0 0 15px rgba(255, 50, 50, 0.6));
   }
 
   50% {
     transform: scale(1.04);
-    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.9));
+    filter: drop-shadow(0 0 25px rgba(255, 50, 50, 0.9));
   }
 }
 
@@ -613,9 +619,9 @@ body.tray-open {
 .library-card:hover,
 .library-card:active {
   transform: translateY(-5px) scale(1.02);
-  background: rgba(255, 153, 51, 0.12);
+  background: rgba(255, 0, 0, 0.12);
   border-color: var(--secondary);
-  box-shadow: 0 10px 30px rgba(255, 153, 51, 0.2);
+  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
 }
 
 .library-card-wide {

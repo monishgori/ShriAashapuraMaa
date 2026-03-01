@@ -8,9 +8,9 @@ export const mantras = [
     },
     {
         id: "m2",
-        name: "Shree Sodevpir Dada Dhyan Mantra",
-        gujarati: "ૐ શ્રી સાદેવપીર દાદાય નમઃ",
+        name: "Shree Aashapura Dada Dhyan Mantra",
+        gujarati: "ૐ શ્રી આશાપુરા માતૃ નમઃ",
         hindi: "ॐ श्री सादेवपीर दादाय नमः",
-        audio: "/assets/audio/Shree_Sodevpir_Dada_Dhyan_Mantra.mp3"
+        audio: "/assets/audio/Shree_Aashapura_Dada_Dhyan_Mantra.mp3"
     }
 ];

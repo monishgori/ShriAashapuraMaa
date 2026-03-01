@@ -11,8 +11,8 @@ export const bhajans = [
     },
     {
         id: "b3",
-        name: "Dhan Dhan Sodevpir",
-        audio: "/assets/audio/Dhan_Dhan_Sodevpir.mp3"
+        name: "Dhan Dhan Aashapura",
+        audio: "/assets/audio/Dhan_Dhan_Aashapura.mp3"
     },
     {
         id: "b4",
@@ -26,7 +26,7 @@ export const bhajans = [
     },
     {
         id: "b6",
-        name: "Sodevpir Dada Mohe",
-        audio: "/assets/audio/Sodevpir_Dada_Mohe.mp3"
+        name: "Aashapura Dada Mohe",
+        audio: "/assets/audio/Aashapura_Dada_Mohe.mp3"
     },
 ];

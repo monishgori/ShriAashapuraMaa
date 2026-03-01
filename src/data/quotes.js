@@ -1,6 +1,6 @@
 export const quotes = [
     {
-        gujarati: "ૐ શ્રી સાદેવપીર દાદાય નમઃ",
+        gujarati: "ૐ શ્રી આશાપુરા માતૃ નમઃ",
         hindi: "ॐ श्री सादेवपीर दादा नमः",
         english: "Divine protection is always with you."
     },

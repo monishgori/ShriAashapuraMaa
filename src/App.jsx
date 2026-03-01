@@ -144,7 +144,7 @@ function App() {
   const [dailyQuote, setDailyQuote] = useState({ gujarati: '', hindi: '', english: '' });
   const [isDiyaLit, setIsDiyaLit] = useState(false);
   const [isSeeking, setIsSeeking] = useState(false);
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
 
   // Splash Screen Logic
   useEffect(() => {
@@ -182,7 +182,7 @@ function App() {
     }
   }, []);
 
-  const backgroundImage = '/assets/images/1.png';
+  const backgroundImage = '/assets/images/background.jpg';
 
   // Background Slider & Time-based Greeting
   const getGreeting = () => {
@@ -194,7 +194,7 @@ function App() {
     } else {
       if (hour < 12) return "शुभ प्रभात";
       if (hour < 17) return "शुभ दोपहर";
-      return "शुभ संध्या";
+      return "ॐ श्री आशापुरा मातु नमः";
     }
   };
 
@@ -374,7 +374,7 @@ function App() {
     if (!audioModes.includes(currentMode)) return "/assets/audio/chalisa1.mp3";
 
     return currentMode === 'chalisa' ? "/assets/audio/chalisa1.mp3" :
-      currentMode === 'mantras' ? (mantras[activeItemIndex]?.audio || "/assets/audio/Shree_Sodevpir_Dada_Dhyan_Mantra.mp3") :
+      currentMode === 'mantras' ? "/assets/audio/om.mp3" :
         currentMode === 'bhajans' ? (bhajans[activeItemIndex]?.audio || "/assets/audio/Jholi_Meri_Bhar_De.mp3") :
           currentMode === 'aartis' ? (aartis[activeItemIndex]?.audio || "/assets/audio/aarti.mp3") :
             currentMode === 'stutis' ? (stutis[activeItemIndex]?.audio || "/assets/audio/Stuti.mp3") :
@@ -523,7 +523,7 @@ function App() {
         {/* Top Bar */}
         <header className="top-bar">
           <div className="divine-centerpiece">
-            <div className="divine-name">ૐ શ્રી સાદેવપીર દાદાય નમઃ</div>
+            <div className="divine-name">ૐ શ્રી આશાપુરા માતૃ નમઃ</div>
           </div>
 
           <div className="top-bar-side-content">
@@ -832,7 +832,7 @@ function App() {
                 ) : historyView === 'lifeStory' ? (
                   <>
                     <div className="page-header center-header">
-                      <div className="page-subtitle">Sacred Journey of Sodevpir Dada</div>
+                      <div className="page-subtitle">Sacred Journey of Aashapura Maa</div>
                     </div>
                     {historyData.lifeStory.content.map((item) => (
                       <div key={item.id} className="verse glass-panel">
@@ -944,7 +944,7 @@ function App() {
       </div>
       {showSplash && (
         <div className="divine-splash-clean">
-          <img src="/assets/images/merged_splash.png" className="splash-full-img" alt="Divine Sodevpir Dada" />
+          <img src="/assets/images/merged_splash.png" className="splash-full-img" alt="Divine Aashapura Maa" />
         </div>
       )}
     </>
