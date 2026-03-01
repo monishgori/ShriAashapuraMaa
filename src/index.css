@@ -1,18 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Tiro+Devanagari+Hindi&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 :root {
   --primary: hsl(25, 100%, 50%);
-  /* Saffron */
   --secondary: hsl(45, 100%, 60%);
-  /* Gold */
   --accent: hsl(0, 100%, 50%);
-  /* Vermillion */
   --bg-dark: hsl(20, 30%, 5%);
-  /* Warm Dark */
-  --glass: hsla(25, 100%, 50%, 0.1);
-  --glass-heavy: hsla(0, 0%, 0%, 0.9);
-  --glass-border: hsla(45, 100%, 50%, 0.3);
+  --glass: hsla(25, 100%, 50%, 0.12);
+  --glass-heavy: hsla(20, 30%, 3%, 0.95);
+  --glass-border: hsla(45, 100%, 50%, 0.4);
   --text-primary: #ffffff;
-  --text-secondary: hsl(45, 100%, 85%);
-  --shadow-gold: 0 0 40px hsla(45, 100%, 50%, 0.25);
+  --text-secondary: hsl(45, 100%, 90%);
+  --gold-gradient: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
   --temple-red: #8B0000;
 }
 
@@ -28,7 +26,8 @@ body {
   overflow: hidden;
   height: 100vh;
   width: 100vw;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 .hindi-text {
@@ -76,6 +75,31 @@ body {
   height: 100%;
   z-index: -1;
   overflow: hidden;
+}
+
+.background-slider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150vmax;
+  height: 150vmax;
+  transform: translate(-50%, -50%);
+  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M200 20l20 60h60l-50 40 20 60-50-40-50 40 20-60-50-40h60z' fill='none' stroke='%23FFD700' stroke-width='0.5' stroke-opacity='0.1'/%3E%3Ccircle cx='200' cy='200' r='180' fill='none' stroke='%23FFD700' stroke-width='0.2' stroke-opacity='0.1'/%3E%3Ccircle cx='200' cy='200' r='150' fill='none' stroke='%23FFD700' stroke-width='0.2' stroke-opacity='0.1'/%3E%3C/svg%3E");
+  background-size: 500px;
+  opacity: 0.3;
+  animation: mandala-spin 120s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes mandala-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .bg-image {
@@ -195,18 +219,30 @@ body {
 
 .divine-name {
   font-family: 'Tiro Devanagari Hindi', serif;
-  font-size: clamp(1.8rem, 8vw, 3.2rem);
+  font-size: clamp(2rem, 9vw, 3.6rem);
   font-weight: 800;
-  background: linear-gradient(to bottom, #FFD700 0%, #FF8C00 50%, #FF4500 100%);
+  background: var(--gold-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.6));
-  animation: divine-pulse 4s infinite ease-in-out;
-  letter-spacing: 2px;
+  filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.4));
+  animation: divine-pulse 5s infinite ease-in-out;
+  letter-spacing: 3px;
   white-space: nowrap;
-  margin-top: 10px;
+  margin-top: 15px;
   position: relative;
+  text-transform: uppercase;
+}
+
+.divine-name::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: var(--gold-gradient);
+  opacity: 0.5;
 }
 
 .divine-name::after {
@@ -435,29 +471,44 @@ body {
 }
 
 .verse {
-  margin: 0 auto 35px auto;
-  padding: 30px;
+  margin: 0 auto 40px auto;
+  padding: 35px;
   width: 100%;
-  max-width: 650px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.08), rgba(139, 0, 0, 0.15));
-  border: 1px solid rgba(255, 215, 0, 0.15);
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(15px);
+  max-width: 680px;
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(255, 140, 0, 0.1), rgba(139, 0, 0, 0.18));
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, 0.3),
+    0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   cursor: pointer;
   position: relative;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .verse.active-verse {
-  border: 2px solid var(--secondary);
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.2), rgba(139, 0, 0, 0.35));
-  transform: scale(1.03) translateY(-8px);
+  border: 1px solid var(--secondary);
+  background: linear-gradient(145deg, rgba(255, 215, 0, 0.15), rgba(139, 0, 0, 0.3));
+  transform: scale(1.04) translateY(-10px);
   box-shadow:
-    0 25px 50px rgba(0, 0, 0, 0.6),
-    0 0 40px rgba(255, 140, 0, 0.3);
-  animation: verse-float 4s infinite ease-in-out;
+    0 30px 60px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(255, 215, 0, 0.25);
+  animation: verse-float 6s infinite ease-in-out;
   z-index: 2;
+}
+
+.verse::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(255, 215, 0, 0.05);
+  border-radius: 18px;
+  pointer-events: none;
 }
 
 @keyframes verse-float {
@@ -642,9 +693,11 @@ body.tray-open {
 .library-card:hover,
 .library-card:active {
   transform: translateY(-8px) scale(1.04);
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.25), rgba(139, 0, 0, 0.4));
+  background: linear-gradient(135deg, rgba(255, 140, 0, 0.3), rgba(139, 0, 0, 0.5));
   border-color: var(--secondary);
-  box-shadow: 0 15px 35px rgba(255, 140, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.2);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(255, 140, 0, 0.3);
 }
 
 .library-card-wide {
@@ -722,16 +775,19 @@ body.tray-open {
 
 .control-island {
   width: 100%;
-  background: rgba(10, 10, 10, 0.95) !important;
-  backdrop-filter: blur(40px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 35px !important;
-  padding: 15px 20px 0 20px !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  background: linear-gradient(180deg, rgba(30, 20, 10, 0.98), rgba(10, 5, 0, 1)) !important;
+  backdrop-filter: blur(50px) !important;
+  -webkit-backdrop-filter: blur(50px) !important;
+  border: 1px solid rgba(255, 215, 0, 0.25) !important;
+  border-radius: 40px !important;
+  padding: 20px 25px 5px 25px !important;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.9),
+    inset 0 0 20px rgba(255, 215, 0, 0.05);
   pointer-events: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 @keyframes float-island {
@@ -858,10 +914,11 @@ body.tray-open {
 }
 
 .dock-icon:active {
-  transform: scale(0.85);
-  background: var(--secondary);
-  color: black;
-  box-shadow: 0 0 15px var(--secondary);
+  transform: scale(0.9) rotate(15deg);
+  background: var(--gold-gradient);
+  color: #000;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+  border-color: transparent;
 }
 
 .dock-icon.active {
@@ -898,23 +955,27 @@ body.tray-open {
 }
 
 .dock-play-btn {
-  width: 64px;
-  height: 64px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--gold-gradient);
   color: #000;
-  font-size: 1.8rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 153, 51, 0.2);
+  font-size: 2.2rem;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(255, 215, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   border: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .dock-play-btn:active {
-  transform: scale(0.9) translateY(5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  transform: scale(0.9) translateY(4px);
+  filter: brightness(1.2);
 }
 
 
