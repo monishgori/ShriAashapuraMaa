@@ -245,16 +245,7 @@ body {
   opacity: 0.5;
 }
 
-.divine-name::after {
-  content: '🕉️';
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1rem;
-  -webkit-text-fill-color: var(--secondary);
-  opacity: 0.8;
-}
+
 
 .top-bar-side-content {
   display: flex;

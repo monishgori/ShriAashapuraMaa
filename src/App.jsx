@@ -523,7 +523,7 @@ function App() {
         {/* Top Bar */}
         <header className="top-bar">
           <div className="divine-centerpiece">
-            <div className="divine-name">ૐ શ્રી આશાપુરા માતૃ નમઃ</div>
+            <div className="divine-name">BOLO SHRI AASHAPURA MAA NI JAI</div>
           </div>
 
           <div className="top-bar-side-content">
