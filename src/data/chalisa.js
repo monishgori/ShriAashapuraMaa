@@ -1,5 +1,5 @@
 export const chalisaData = {
-    title: "ॐ",
+    title: "Aashapura Maa Chalisa",
     audio: "/assets/audio/om.mp3",
     lyrics: [
         {
