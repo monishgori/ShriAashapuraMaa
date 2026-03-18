@@ -1054,7 +1054,7 @@ function App() {
       </div>
       {showSplash && (
         <div className="divine-splash-clean">
-          <img src="/assets/images/merged_splash.png" className="splash-full-img" alt="Divine Aashapura Maa" />
+          <img src="/assets/images/bgimg.png" className="splash-full-img" alt="Divine Aashapura Maa" />
         </div>
       )}
     </>
