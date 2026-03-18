@@ -1751,3 +1751,33 @@ body.tray-open {
     transform: scale(1);
   }
 }
+/* Custom Settings Switch */
+.switch {
+  width: 44px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.switch.on {
+  background-color: var(--secondary);
+}
+
+.switch-knob {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.switch.on .switch-knob {
+  transform: translateX(20px);
+}
