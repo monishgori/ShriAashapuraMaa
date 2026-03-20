@@ -665,12 +665,11 @@ function App() {
     if (audioRef.current) audioRef.current.pause();
   }, [currentMode]);
 
+  if (isGuidePage) return <Guide />;
+
   return (
     <>
-      {isGuidePage ? (
-        <Guide />
-      ) : (
-        <div className={`app-container ${showSplash ? 'splash-active' : ''} ${isLyricsVisible ? 'view-mode' : 'home-mode'}`}>
+      <div className={`app-container ${showSplash ? 'splash-active' : ''} ${isLyricsVisible ? 'view-mode' : 'home-mode'}`}>
         {/* Diya (Lamp) */}
         <div className={`diya-container ${isDiyaLit ? 'lit' : ''}`}>
           <div className="diya-glow"></div>
@@ -1112,7 +1111,7 @@ function App() {
 
         {/* No separate footer - all is in dashboard */}
       </div>
-      )}
+
       {showSplash && (
         <div className="divine-splash-clean">
           <img src={backgroundImage} className="splash-full-img" alt="Divine Aashapura Maa" />
