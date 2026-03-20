@@ -11,6 +11,7 @@ import { quotes } from './data/quotes';
 import { videos } from './data/videos';
 import { historyData } from './data/history';
 import { policyData } from './data/policy';
+import Guide from './Guide';
 // Web haptics fallback
 const ImpactStyle = {
   Light: 10,
@@ -237,6 +238,7 @@ function App() {
   const [activeIncidentIndex, setActiveIncidentIndex] = useState(null);
   const [historyView, setHistoryView] = useState('menu'); // 'menu', 'lifeStory', 'incidents'
   const [isLibraryOpen, setIsLibraryOpen] = useState(false);
+  const isGuidePage = window.location.pathname === '/guide';
 
   // iOS Safari Stability: Lock body scroll when tray is open to prevent jumping
   useEffect(() => {
@@ -665,7 +667,10 @@ function App() {
 
   return (
     <>
-      <div className={`app-container ${isLyricsVisible ? 'view-mode' : 'home-mode'}`}>
+      {isGuidePage ? (
+        <Guide />
+      ) : (
+        <div className={`app-container ${showSplash ? 'splash-active' : ''} ${isLyricsVisible ? 'view-mode' : 'home-mode'}`}>
         {/* Diya (Lamp) */}
         <div className={`diya-container ${isDiyaLit ? 'lit' : ''}`}>
           <div className="diya-glow"></div>
@@ -1107,6 +1112,7 @@ function App() {
 
         {/* No separate footer - all is in dashboard */}
       </div>
+      )}
       {showSplash && (
         <div className="divine-splash-clean">
           <img src={backgroundImage} className="splash-full-img" alt="Divine Aashapura Maa" />
