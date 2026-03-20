@@ -276,7 +276,7 @@ function App() {
     }
   }, []);
 
-  const backgroundImage = '/assets/images/bgimg.png';
+  const backgroundImage = '/assets/images/bgimage.jpeg';
 
   // Background Slider & Time-based Greeting
   const getGreeting = () => {
