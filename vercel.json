@@ -1,4 +1,6 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "headers": [
     {
       "source": "/assets/audio/(.*)",
@@ -19,10 +21,6 @@
     }
   ],
   "rewrites": [
-    {
-      "source": "/guide",
-      "destination": "/index.html"
-    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

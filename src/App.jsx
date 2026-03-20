@@ -11,7 +11,6 @@ import { quotes } from './data/quotes';
 import { videos } from './data/videos';
 import { historyData } from './data/history';
 import { policyData } from './data/policy';
-import Guide from './Guide';
 // Web haptics fallback
 const ImpactStyle = {
   Light: 10,
@@ -238,7 +237,6 @@ function App() {
   const [activeIncidentIndex, setActiveIncidentIndex] = useState(null);
   const [historyView, setHistoryView] = useState('menu'); // 'menu', 'lifeStory', 'incidents'
   const [isLibraryOpen, setIsLibraryOpen] = useState(false);
-  const isGuidePage = window.location.pathname === '/guide';
 
   // iOS Safari Stability: Lock body scroll when tray is open to prevent jumping
   useEffect(() => {
@@ -664,8 +662,6 @@ function App() {
     setIsPlaying(false);
     if (audioRef.current) audioRef.current.pause();
   }, [currentMode]);
-
-  if (isGuidePage) return <Guide />;
 
   return (
     <>
