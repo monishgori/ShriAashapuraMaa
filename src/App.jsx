@@ -18,8 +18,94 @@ const ImpactStyle = {
   Heavy: 30
 };
 
-// Memoized Library Tray to prevent jumping/flickering on re-renders (Critical for iOS Safari)
+const uiTranslations = {
+  gujarati: {
+    libraryTitle: "ભક્તિ લાયબ્રેરી",
+    chalisa: "મા ની ચાલીસા",
+    mantras: "સિદ્ધ મંત્ર",
+    bhajans: "ભજન સંગ્રહ",
+    aarti: "મા ની આરતી",
+    stuti: "મા ની સ્તુતિ",
+    history: "મા નો ઇતિહાસ",
+    videos: "યુટ્યુબ ભક્તિ",
+    policy: "ગોપનીયતા નીતિ",
+    reminders: "દૈનિક સૂચનાઓ",
+    morningQuote: "આજનો વિચાર (6:30 AM)",
+    eveningAarti: "સાંજ ની આરતી (6:30 PM)",
+    closeReading: "વાંચન બંધ કરો",
+    goBack: "પાછા જાઓ",
+    chooseSection: "વાંચવા માટે વિભાગ પસંદ કરો",
+    lifeStory: "જીવન ચરિત્ર અને ચમત્કારો",
+    incidentIndex: "સત્ય ઘટનાઓ",
+    sacredJourney: "શ્રી આશાપુરા મા ની પવિત્ર યાત્રા",
+    selectMiracle: "વાંચવા માટે ચમત્કાર પસંદ કરો",
+    miracleHistory: "ચમત્કારનો ઇતિહાસ",
+    youtubeLibrary: "યુટ્યુબ ભક્તિ લાયબ્રેરી",
+    jaap: "જાપ",
+    of: "માંથી",
+    selected: "(પસંદ કરેલ)",
+    appOpening: "માતાજી ની પૂજા"
+  },
+  hindi: {
+    libraryTitle: "भक्ति लाइब्रेरी",
+    chalisa: "माँ की चालीसा",
+    mantras: "सिद्ध मंत्र",
+    bhajans: "भजन संग्रह",
+    aarti: "माँ की आरती",
+    stuti: "माँ की स्तुति",
+    history: "माँ का इतिहास",
+    videos: "यूट्यूब भक्ति",
+    policy: "गोपनीयता नीति",
+    reminders: "दैनिक सूचनाएं",
+    morningQuote: "सुबह का विचार (6:30 AM)",
+    eveningAarti: "शाम की आरती (6:30 PM)",
+    closeReading: "पठन बंद करें",
+    goBack: "वापस जाएं",
+    chooseSection: "पढ़ने के लिए एक अनुभाग चुनें",
+    lifeStory: "जीवन चरित्र और चमत्कार",
+    incidentIndex: "सत्य घटनाएं",
+    sacredJourney: "श्री आशापुरा माँ की पवित्र यात्रा",
+    selectMiracle: "पढ़ने के लिए एक चमत्कार चुनें",
+    miracleHistory: "चमत्कार का इतिहास",
+    youtubeLibrary: "यूट्यूब भक्ति लाइब्रेरी",
+    jaap: "जाप",
+    of: "में से",
+    selected: "(चयनित)",
+    appOpening: "माँ की पूजा"
+  },
+  english: {
+    libraryTitle: "Devotional Library",
+    chalisa: "Chalisa",
+    mantras: "Mantras",
+    bhajans: "Bhajans",
+    aarti: "Aarti",
+    stuti: "Stuti",
+    history: "History",
+    videos: "Videos",
+    policy: "Privacy Policy",
+    reminders: "Daily Reminders",
+    morningQuote: "Morning Quote (6:30 AM)",
+    eveningAarti: "Evening Aarti (6:30 PM)",
+    closeReading: "Close Reading",
+    goBack: "Go Back",
+    chooseSection: "Choose a Section to Read",
+    lifeStory: "Life Story & Miracles",
+    incidentIndex: "True Incidents Index",
+    sacredJourney: "Sacred Journey of Aashapura Maa",
+    selectMiracle: "Select a Miracle to Read",
+    miracleHistory: "Miracle History",
+    youtubeLibrary: "YouTube Devotional Library",
+    jaap: "Jaap",
+    of: "of",
+    selected: "(Selected)",
+    appOpening: "Maa's Pooja"
+  }
+};
+
+// Memoized Library Tray
 const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, language, startReading, morningToggle, eveningToggle, isMorningOn, isEveningOn }) => {
+  const t = uiTranslations[language] || uiTranslations.english;
+  
   return (
     <>
       {isLibraryOpen && <div className="tray-backdrop" onClick={() => setIsLibraryOpen(false)}></div>}
@@ -28,59 +114,52 @@ const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, languag
         onClick={(e) => e.stopPropagation()}
       >
         <div className="tray-handle" onClick={() => setIsLibraryOpen(false)}></div>
-        <div className="tray-title">Devotional Library</div>
+        <div className="tray-title">{t.libraryTitle}</div>
 
         <div className="library-grid">
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('chalisa'); }}>
             <span className="lib-icon">📜</span>
             <span className="lib-hindi">
-              {language === 'gujarati' ? 'મા ની ચાલીસા' : 'माँ की चालीसा'}
+              {t.chalisa}
             </span>
-            <span className="lib-eng">CHALISA</span>
           </button>
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('mantras'); }}>
             <span className="lib-icon">💎</span>
             <span className="lib-hindi">
-              {language === 'gujarati' ? 'સિદ્ધ મંત્ર' : 'सिद्ध मंत्र'}
+              {t.mantras}
             </span>
-            <span className="lib-eng">MANTRAS</span>
           </button>
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('bhajans'); }}>
             <span className="lib-icon">🪕</span>
             <span className="lib-hindi">
-              {language === 'gujarati' ? 'ભજન સંગ્રહ' : 'भजन संग्रह'}
+              {t.bhajans}
             </span>
-            <span className="lib-eng">BHAJANS</span>
           </button>
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('aartis'); }}>
             <span className="lib-icon">🕯️</span>
             <span className="lib-hindi">
-              {language === 'gujarati' ? 'મા ની આરતી' : 'माँ की आरती'}
+              {t.aarti}
             </span>
-            <span className="lib-eng">AARTI</span>
           </button>
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('stutis'); }}>
             <span className="lib-icon">🙌</span>
             <span className="lib-hindi">
-              {language === 'gujarati' ? 'મા ની સ્તુતિ' : 'माँ की स्तुति'}
+              {t.stuti}
             </span>
-            <span className="lib-eng">STUTI</span>
           </button>
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('history'); }}>
             <span className="lib-icon">🏺</span>
             <span className="lib-hindi">
-              {language === 'gujarati' ? 'મા નો ઇતિહાસ' : 'माँ का इतिहास'}
+              {t.history}
             </span>
-            <span className="lib-eng">HISTORY</span>
           </button>
           <button className="library-card library-card-wide" onClick={(e) => { e.stopPropagation(); startReading('videos'); }}>
             <div className="wide-card-content">
               <span className="lib-icon">🎥</span>
               <div className="wide-text">
                 <span className="lib-hindi" style={{ fontSize: '1.3rem' }}>
-                  {language === 'gujarati' ? 'યુટ્યુબ ભક્તિ' : 'यूट्यूब भक्ति'}
+                  {t.videos}
                 </span>
-                <span className="lib-eng">VIDEOS</span>
               </div>
             </div>
           </button>
@@ -88,13 +167,13 @@ const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, languag
 
         <div className="settings-section" style={{ marginTop: '20px', padding: '0 15px' }}>
           <div style={{ color: 'var(--secondary)', fontSize: '0.85rem', marginBottom: '10px', textTransform: 'uppercase', letterSpacing: '1px' }}>
-            {language === 'gujarati' ? 'દૈનિક સૂચનાઓ (Reminders)' : language === 'english' ? 'Daily Reminders' : 'દૈનિક સુચનાઓ (Reminders)'}
+            {t.reminders}
           </div>
           
           <div className="setting-row glass-panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 15px', marginBottom: '10px', borderRadius: '15px' }}>
              <div style={{ color: '#fff', fontSize: '0.9rem' }}>
                 <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🌅</span> 
-                {language === 'gujarati' ? 'આજનો વિચાર (6:30 AM)' : language === 'english' ? 'Morning Quote (6:30 AM)' : 'सुबह का विचार (6:30 AM)'}
+                {t.morningQuote}
              </div>
              <div className={`switch ${isMorningOn ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); morningToggle(!isMorningOn); }}>
                 <div className="switch-knob"></div>
@@ -104,7 +183,7 @@ const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, languag
           <div className="setting-row glass-panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 15px', borderRadius: '15px' }}>
              <div style={{ color: '#fff', fontSize: '0.9rem' }}>
                 <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🪔</span> 
-                {language === 'gujarati' ? 'સાંજ ની આરતી (6:30 PM)' : language === 'english' ? 'Evening Aarti (6:30 PM)' : 'शाम की आरती (6:30 PM)'}
+                {t.eveningAarti}
              </div>
              <div className={`switch ${isEveningOn ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); eveningToggle(!isEveningOn); }}>
                 <div className="switch-knob"></div>
@@ -124,7 +203,7 @@ const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, languag
               fontWeight: '500'
             }}
           >
-            PRIVACY POLICY
+            {t.policy.toUpperCase()}
           </button>
         </div>
       </div>
@@ -140,6 +219,8 @@ function App() {
   const [language, setLanguage] = useState(() => {
     try { return localStorage.getItem('pooja_lang') || 'gujarati'; } catch { return 'gujarati'; }
   });
+  
+  const t = uiTranslations[language] || uiTranslations.english;
   const [repeatCount, setRepeatCount] = useState(() => {
     try { return Number(localStorage.getItem('pooja_repeat')) || 1; } catch { return 1; }
   });
@@ -622,7 +703,7 @@ function App() {
         <header className="top-bar">
           <div className="divine-centerpiece">
             <div className="divine-name">
-              {language === 'gujarati' ? 'બોલો શ્રી આશાપુરા મા ની જય' : 'बोलो श्री आशापुरा माँ की जय'}
+              {t.appOpening}
             </div>
           </div>
 
@@ -631,18 +712,16 @@ function App() {
               <div className="greeting-text">{getGreeting()}</div>
             </div>
 
-            {!isLyricsVisible && !isFocusMode && (dailyQuote.gujarati || dailyQuote.hindi) && (
+            {!isLyricsVisible && !isFocusMode && dailyQuote[language] && (
               <div className="daily-quote-card glass-panel">
                 <div className="quote-header">
                   <span className="quote-icon">❝</span>
-                  <span className="quote-label">{language === 'gujarati' ? 'આજનો વિચાર' : 'आज का विचार'}</span>
+                  <span className="quote-label">{t.morningQuote.split(' (')[0]}</span>
                 </div>
                 <div className="quote-content">
                   <div className="main-quote">
-                    {dailyQuote[language] || dailyQuote.gujarati || dailyQuote.hindi}
+                    {dailyQuote[language]}
                   </div>
-                  {language !== 'gujarati' && dailyQuote.gujarati && <div className="sub-quote guj">{dailyQuote.gujarati}</div>}
-                  {language !== 'hindi' && dailyQuote.hindi && <div className="sub-quote hindi">{dailyQuote.hindi}</div>}
                 </div>
               </div>
             )}
@@ -803,7 +882,7 @@ function App() {
           <main className="lyrics-container">
             <div className="top-actions-row">
               <div className="back-btn glass-panel" onClick={() => setIsLyricsVisible(false)}>
-                <span className="back-icon">←</span> {language === 'gujarati' ? 'વાંચન બંધ કરો' : 'पठन बंद करें'}
+                <span className="back-icon">←</span> {t.closeReading}
               </div>
               {currentMode === 'history' && historyView !== 'menu' && (
                 <div className="back-btn glass-panel secondary-back" onClick={() => {
@@ -814,48 +893,26 @@ function App() {
                   }
                   triggerHaptic();
                 }}>
-                  <span className="back-icon">↺</span> {language === 'gujarati' ? 'પાછા જાઓ' : 'वापस जाएं'}
+                  <span className="back-icon">↺</span> {t.goBack}
                 </div>
               )}
             </div>
 
             <div className="page-header">
               <div className="page-title">
-                {language === 'gujarati' ? (
-                  currentMode === 'chalisa' ? 'મા ની ચાલીસા' :
-                    currentMode === 'mantras' ? 'સિદ્ધ મંત્ર સંગ્રહ' :
-                      currentMode === 'bhajans' ? 'ભજન સંગ્રહ' :
-                        currentMode === 'aartis' ? 'મા ની આરતી' :
-                          currentMode === 'stutis' ? 'મા ની સ્તુતિ' :
-                            currentMode === 'history' ? (
-                              historyView === 'menu' ? 'મા નો ઇતિહાસ' :
-                                historyView === 'lifeStory' ? 'મા નું જીવન ચરિત્ર' :
-                                  historyView === 'incidentDetail' && activeIncidentIndex !== null ? historyData.incidents[activeIncidentIndex].title[language] : 'માના ચમત્કારો'
-                            ) :
-                              currentMode === 'videos' ? 'મા ના દર્શન' :
-                                currentMode === 'policy' ? 'ગોપનીયતા નીતિ' : 'માતાજી ની પૂજા'
-                ) : (
-                  currentMode === 'chalisa' ? 'माँ की चालीसा' :
-                    currentMode === 'mantras' ? 'सिद्ध मंत्र संग्रह' :
-                      currentMode === 'bhajans' ? 'भजन संग्रह' :
-                        currentMode === 'aartis' ? 'माँ की आरती' :
-                          currentMode === 'stutis' ? 'माँ की स्तुति' :
-                            currentMode === 'history' ? (
-                              historyView === 'menu' ? 'माँ का इतिहास' :
-                                historyView === 'lifeStory' ? 'माँ का जीवन चरित्र' :
-                                  historyView === 'incidentDetail' && activeIncidentIndex !== null ? historyData.incidents[activeIncidentIndex].title[language] : 'माँ के चमत्कार'
-                            ) :
-                              currentMode === 'videos' ? 'माँ के दर्शन' :
-                                currentMode === 'policy' ? 'गोपनीयता नीति' : 'माँ की पूजा'
-                )}
+                {currentMode === 'history' ? (
+                  historyView === 'menu' ? t.history :
+                    historyView === 'lifeStory' ? t.lifeStory :
+                      historyView === 'incidentDetail' && activeIncidentIndex !== null ? historyData.incidents[activeIncidentIndex].title[language] : t.incidentIndex
+                ) : t[currentMode] || t.appOpening}
               </div>
               <div className="page-subtitle">
                 {['chalisa', 'mantras', 'bhajans', 'aartis', 'stutis'].includes(currentMode) && repeatCount > 1 && (
                   <div className="jaap-counter">
-                    Jaap {currentRepeat + 1} of {repeatCount}
+                    {t.jaap} {currentRepeat + 1} {t.of} {repeatCount}
                   </div>
                 )}
-                {currentMode === 'videos' && 'YouTube Devotional Library'}
+                {currentMode === 'videos' && t.youtubeLibrary}
               </div>
             </div>
 
@@ -879,7 +936,7 @@ function App() {
                   }}
                 >
                   <div style={{ color: 'var(--secondary)', fontSize: '0.9rem', marginBottom: '10px' }}>
-                    {mantra.name} {activeItemIndex === index && ' (Selected)'}
+                    {mantra.name} {activeItemIndex === index && ` ${t.selected}`}
                   </div>
                   <div className="hindi-text">{mantra[language] || mantra.gujarati || mantra.hindi}</div>
                 </div>
@@ -898,7 +955,7 @@ function App() {
                   }}
                 >
                   <div style={{ color: 'var(--secondary)', fontSize: '0.9rem', marginBottom: '10px' }}>
-                    {bhajan.name} {activeItemIndex === index && ' (Selected)'}
+                    {bhajan.name} {activeItemIndex === index && ` ${t.selected}`}
                   </div>
                   <div className="hindi-text">{bhajan[language] || bhajan.gujarati || bhajan.hindi}</div>
                 </div>
@@ -920,20 +977,20 @@ function App() {
                 {historyView === 'menu' ? (
                   <>
                     <div className="page-header center-header">
-                      <div className="page-subtitle">Choose a Section to Read</div>
+                      <div className="page-subtitle">{t.chooseSection}</div>
                     </div>
                     <div className="history-menu-grid">
                       <button className="history-menu-card glass-panel" onClick={() => { setHistoryView('lifeStory'); triggerHaptic(ImpactStyle.Medium); }}>
                         <div className="menu-card-icon">📖</div>
                         <div className="menu-card-content">
-                          <div className="menu-card-title">{language === 'gujarati' ? 'જીવન ચરિત્ર' : 'जीवन चरित्र'}</div>
+                          <div className="menu-card-title">{t.lifeStory}</div>
                           <div className="menu-card-subtitle">Life Story & Miracles</div>
                         </div>
                       </button>
                       <button className="history-menu-card glass-panel" onClick={() => { setHistoryView('incidents'); triggerHaptic(ImpactStyle.Medium); }}>
                         <div className="menu-card-icon">✨</div>
                         <div className="menu-card-content">
-                          <div className="menu-card-title">{language === 'gujarati' ? 'મા ના ચમત્કારો' : 'माँ के चमत्कार'}</div>
+                          <div className="menu-card-title">{t.incidentIndex}</div>
                           <div className="menu-card-subtitle">True Incidents Index</div>
                         </div>
                       </button>
@@ -942,15 +999,15 @@ function App() {
                 ) : historyView === 'lifeStory' ? (
                   <>
                     <div className="page-header center-header">
-                      <div className="page-subtitle">Sacred Journey of Aashapura Maa</div>
+                      <div className="page-subtitle">{t.sacredJourney}</div>
                     </div>
                     {historyData.lifeStory.content.map((item) => (
                       <div key={item.id} className="verse glass-panel">
                         <div style={{ color: 'var(--secondary)', fontSize: '1.2rem', marginBottom: '15px' }}>
-                          {item.subtitle[language]}
+                          {item.subtitle[language] || item.subtitle.gujarati}
                         </div>
                         <div className="hindi-text" style={{ fontSize: '1.1rem', textAlign: 'left' }}>
-                          {item.text[language]}
+                          {item.text[language] || item.text.gujarati}
                         </div>
                       </div>
                     ))}
@@ -958,7 +1015,7 @@ function App() {
                 ) : historyView === 'incidents' ? (
                   <>
                     <div className="page-header center-header">
-                      <div className="page-subtitle">Select a Miracle to Read</div>
+                      <div className="page-subtitle">{t.selectMiracle}</div>
                     </div>
 
                     <div className="incidents-grid">
@@ -974,7 +1031,7 @@ function App() {
                           }}
                         >
                           <span className="incident-number">#{idx + 1}</span>
-                          <span className="incident-title-text">{incident.title[language]}</span>
+                          <span className="incident-title-text">{incident.title[language] || incident.title.gujarati}</span>
                         </button>
                       ))}
                     </div>
@@ -982,11 +1039,11 @@ function App() {
                 ) : historyView === 'incidentDetail' ? (
                   <div className="selected-incident-viewer-fullscreen active-verse">
                     <div className="page-header center-header">
-                      <div className="page-subtitle">{language === 'gujarati' ? 'ચમત્કારનો ઇતિહાસ' : 'चमत्कार का इतिहास'}</div>
+                      <div className="page-subtitle">{t.miracleHistory}</div>
                     </div>
                     {activeIncidentIndex !== null && historyData.incidents[activeIncidentIndex] && (
                       <div className="hindi-text incident-content-full">
-                        {historyData.incidents[activeIncidentIndex].content[language]}
+                        {historyData.incidents[activeIncidentIndex].content[language] || historyData.incidents[activeIncidentIndex].content.gujarati}
                       </div>
                     )}
                   </div>
@@ -994,8 +1051,6 @@ function App() {
               </div>
             ) : currentMode === 'videos' ? (
               <div className="videos-section-container">
-
-
                 <div className="videos-grid-flow">
                   {videos.map((vid) => (
                     <div key={vid.id} className="video-premium-card glass-panel">
@@ -1054,7 +1109,7 @@ function App() {
       </div>
       {showSplash && (
         <div className="divine-splash-clean">
-          <img src="/assets/images/bgimg.png" className="splash-full-img" alt="Divine Aashapura Maa" />
+          <img src={backgroundImage} className="splash-full-img" alt="Divine Aashapura Maa" />
         </div>
       )}
     </>
