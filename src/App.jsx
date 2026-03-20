@@ -338,7 +338,7 @@ function App() {
 
         // Show Banner Ad at the very bottom
         const adOptions = {
-          adId: 'ca-app-pub-5914382038291713/2444272147', // User's Ad Unit ID
+          adId: 'ca-app-pub-5914382038291713/1282219355', // User's Ad Unit ID
           adSize: BannerAdSize.ADAPTIVE_BANNER,
           position: BannerAdPosition.BOTTOM_CENTER,
           margin: 0,
