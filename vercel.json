@@ -1,29 +1,31 @@
 {
-    "cleanUrls": true,
-    "trailingSlash": false,
-    "headers": [
+  "headers": [
+    {
+      "source": "/assets/audio/(.*)",
+      "headers": [
         {
-            "source": "/assets/audio/(.*)",
-            "headers": [
-                {
-                    "key": "Accept-Ranges",
-                    "value": "bytes"
-                },
-                {
-                    "key": "Content-Type",
-                    "value": "audio/mpeg"
-                },
-                {
-                    "key": "Cache-Control",
-                    "value": "public, max-age=31536000, immutable"
-                }
-            ]
-        }
-    ],
-    "rewrites": [
+          "key": "Accept-Ranges",
+          "value": "bytes"
+        },
         {
-            "source": "/(.*)",
-            "destination": "/index.html"
+          "key": "Content-Type",
+          "value": "audio/mpeg"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
         }
-    ]
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/guide",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
