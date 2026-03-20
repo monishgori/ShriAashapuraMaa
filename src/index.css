@@ -1784,13 +1784,17 @@ body.tray-open {
 /* --- GUIDE PAGE STYLES --- */
 .guide-page {
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   background: radial-gradient(circle at center, #2c1a0c 0%, #1a0f07 100%);
   color: white;
   padding: 40px 20px 100px 20px;
-  overflow-y: auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   font-family: 'Outfit', sans-serif;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
 }
 
 .guide-header {
