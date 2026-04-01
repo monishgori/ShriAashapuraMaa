@@ -1,10 +1,10 @@
 {
-  "appId": "com.monishgori.shrisodevpirdada",
-  "appName": "Shri Sodevpir Dada",
+  "appId": "com.monishgori.shriaashapuramaa",
+  "appName": "Shri Aashapura Maa",
   "webDir": "dist",
   "plugins": {
     "AdMob": {
-      "androidAppId": "ca-app-pub-5914382038291713~4636630725"
+      "androidAppId": "ca-app-pub-5914382038291713~3093994476"
     }
   }
 }

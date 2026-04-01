@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Shri Sodevpir Dada</string>
-    <string name="title_activity_main">Shri Sodevpir Dada</string>
-    <string name="package_name">com.monishgori.shrisodevpirdada</string>
-    <string name="custom_url_scheme">com.monishgori.shrisodevpirdada</string>
+    <string name="app_name">Shri Aashapura Maa</string>
+    <string name="title_activity_main">Shri Aashapura Maa</string>
+    <string name="package_name">com.monishgori.shriaashapuramaa</string>
+    <string name="custom_url_scheme">com.monishgori.shriaashapuramaa</string>
 </resources>

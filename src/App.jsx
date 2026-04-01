@@ -105,7 +105,7 @@ const uiTranslations = {
 // Memoized Library Tray
 const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, language, startReading, morningToggle, eveningToggle, isMorningOn, isEveningOn }) => {
   const t = uiTranslations[language] || uiTranslations.english;
-  
+
   return (
     <>
       {isLibraryOpen && <div className="tray-backdrop" onClick={() => setIsLibraryOpen(false)}></div>}
@@ -169,25 +169,25 @@ const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, languag
           <div style={{ color: 'var(--secondary)', fontSize: '0.85rem', marginBottom: '10px', textTransform: 'uppercase', letterSpacing: '1px' }}>
             {t.reminders}
           </div>
-          
+
           <div className="setting-row glass-panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 15px', marginBottom: '10px', borderRadius: '15px' }}>
-             <div style={{ color: '#fff', fontSize: '0.9rem' }}>
-                <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🌅</span> 
-                {t.morningQuote}
-             </div>
-             <div className={`switch ${isMorningOn ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); morningToggle(!isMorningOn); }}>
-                <div className="switch-knob"></div>
-             </div>
+            <div style={{ color: '#fff', fontSize: '0.9rem' }}>
+              <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🌅</span>
+              {t.morningQuote}
+            </div>
+            <div className={`switch ${isMorningOn ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); morningToggle(!isMorningOn); }}>
+              <div className="switch-knob"></div>
+            </div>
           </div>
 
           <div className="setting-row glass-panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 15px', borderRadius: '15px' }}>
-             <div style={{ color: '#fff', fontSize: '0.9rem' }}>
-                <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🪔</span> 
-                {t.eveningAarti}
-             </div>
-             <div className={`switch ${isEveningOn ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); eveningToggle(!isEveningOn); }}>
-                <div className="switch-knob"></div>
-             </div>
+            <div style={{ color: '#fff', fontSize: '0.9rem' }}>
+              <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🪔</span>
+              {t.eveningAarti}
+            </div>
+            <div className={`switch ${isEveningOn ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); eveningToggle(!isEveningOn); }}>
+              <div className="switch-knob"></div>
+            </div>
           </div>
         </div>
         <div className="tray-privacy-footer" style={{ textAlign: 'center', padding: '15px 0 10px 0', opacity: 0.5 }}>
@@ -219,7 +219,7 @@ function App() {
   const [language, setLanguage] = useState(() => {
     try { return localStorage.getItem('pooja_lang') || 'gujarati'; } catch { return 'gujarati'; }
   });
-  
+
   const t = uiTranslations[language] || uiTranslations.english;
   const [repeatCount, setRepeatCount] = useState(() => {
     try { return Number(localStorage.getItem('pooja_repeat')) || 1; } catch { return 1; }
@@ -248,7 +248,7 @@ function App() {
   }, [isLibraryOpen]);
   const [sleepTimer, setSleepTimer] = useState(null); // in minutes
   const [timerId, setTimerId] = useState(null);
-  
+
   // Notification States
   const [morningNotification, setMorningNotification] = useState(() => {
     try { return localStorage.getItem('sodev_morning_notif') === 'true'; } catch { return false; }
@@ -266,50 +266,50 @@ function App() {
           if (morningNotification || eveningNotification) {
             const reqStatus = await LocalNotifications.requestPermissions();
             if (reqStatus.display !== 'granted') {
-               console.log('Permission not granted for notifications');
-               setMorningNotification(false);
-               setEveningNotification(false);
-               return;
+              console.log('Permission not granted for notifications');
+              setMorningNotification(false);
+              setEveningNotification(false);
+              return;
             }
           } else {
-             return; // no perms and not trying to turn on
+            return; // no perms and not trying to turn on
           }
         }
 
         // Cancel existing
         const pending = await LocalNotifications.getPending();
         if (pending.notifications.length > 0) {
-            await LocalNotifications.cancel({ notifications: pending.notifications.map(n => ({ id: n.id })) });
+          await LocalNotifications.cancel({ notifications: pending.notifications.map(n => ({ id: n.id })) });
         }
 
         const notificationsList = [];
 
         if (morningNotification) {
-            notificationsList.push({
-                title: language === 'gujarati' ? 'શુભ પ્રભાત ધન્ય દિવસ!' : language === 'english' ? 'Good Morning!' : 'शुभ प्रभात धन्य दिन!',
-                body: language === 'gujarati' ? 'તમારો આજનો વિચાર વાંચવા માટે ટચ કરો.' : language === 'english' ? 'Tap to read your thought of the day.' : 'आज का विचार पढ़ने के लिए टैप करें।',
-                id: 1,
-                schedule: { on: { hour: 6, minute: 30 }, allowWhileIdle: true }
-            });
+          notificationsList.push({
+            title: language === 'gujarati' ? 'શુભ પ્રભાત ધન્ય દિવસ!' : language === 'english' ? 'Good Morning!' : 'शुभ प्रभात धन्य दिन!',
+            body: language === 'gujarati' ? 'તમારો આજનો વિચાર વાંચવા માટે ટચ કરો.' : language === 'english' ? 'Tap to read your thought of the day.' : 'आज का विचार पढ़ने के लिए टैप करें।',
+            id: 1,
+            schedule: { on: { hour: 6, minute: 30 }, allowWhileIdle: true }
+          });
         }
 
         if (eveningNotification) {
-            notificationsList.push({
-                title: language === 'gujarati' ? 'આરતી નો સમય' : language === 'english' ? 'Evening Aarti Time' : 'आरती का समय',
-                body: language === 'gujarati' ? 'શ્રી આશાપુરા મા ની સાંજની આરતી કરવાનો સમય થઈ ગયો છે.' : language === 'english' ? 'It is time for Shree Aashapura Maa evening Aarti.' : 'श्री आशापुरा माँ की शाम की आरती का समय हो गया है।',
-                id: 2,
-                schedule: { on: { hour: 18, minute: 30 }, allowWhileIdle: true }
-            });
+          notificationsList.push({
+            title: language === 'gujarati' ? 'આરતી નો સમય' : language === 'english' ? 'Evening Aarti Time' : 'आरती का समय',
+            body: language === 'gujarati' ? 'શ્રી આશાપુરા મા ની સાંજની આરતી કરવાનો સમય થઈ ગયો છે.' : language === 'english' ? 'It is time for Shree Aashapura Maa evening Aarti.' : 'श्री आशापुरा माँ की शाम की आरती का समय हो गया है।',
+            id: 2,
+            schedule: { on: { hour: 18, minute: 30 }, allowWhileIdle: true }
+          });
         }
 
         if (notificationsList.length > 0) {
-           await LocalNotifications.schedule({ notifications: notificationsList });
+          await LocalNotifications.schedule({ notifications: notificationsList });
         }
       } catch (e) {
-         console.log('Notification setup failed', e);
+        console.log('Notification setup failed', e);
       }
     };
-    
+
     setupNotifications();
     localStorage.setItem('sodev_morning_notif', morningNotification.toString());
     localStorage.setItem('sodev_evening_notif', eveningNotification.toString());
