@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Shri Aashapura Maa - Official Welcome Guide</title>
+    
+    <meta property="og:title" content="Shri Aashapura Maa App - Welcome Guide">
+    <meta property="og:description" content="Begin your spiritual journey. Download the official app.">
+    
+    <link rel="icon" type="image/png" href="/assets/images/new_icon.png?v=4" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:wght@200;400;600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --p-gold: #FFD700;
+            --p-glow: rgba(255, 215, 0, 0.4);
+            --p-bg: #030302;
+            --card-edge: rgba(255, 255, 255, 0.1);
+            --text-main: #FFFFFF;
+            --text-dim: rgba(255, 255, 255, 0.7);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--p-bg);
+            color: var(--text-main);
+            line-height: 1.4;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ultimate Locked Background (Mobile Fix) */
+        .bg-layer {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -10;
+            background: linear-gradient(rgba(3, 3, 2, 0.7), rgba(3, 3, 2, 0.8)),
+                        url('/assets/images/guide_bg1.jpg?v=4') center center / cover no-repeat fixed;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            padding: 80px 24px;
+            position: relative;
+        }
+
+        /* Adjusted Header */
+        .header { margin-bottom: 60px; text-align: left; position: relative; z-index: 5; }
+        
+        .title-h {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 3.2rem;
+            line-height: 1.1;
+            letter-spacing: 0px;
+            background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0.4));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .subtitle-h { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 4px; color: var(--p-gold); font-weight: 700; margin-bottom: 40px; display: block; }
+
+        /* Selectors */
+        .selector-pills {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+            background: rgba(0,0,0,0.4);
+            padding: 5px;
+            border-radius: 12px;
+            border: 1px solid var(--card-edge);
+            backdrop-filter: blur(10px);
+        }
+        .pill {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.4s;
+        }
+        .pill.active { background: #fff; color: #000; box-shadow: 0 5px 15px rgba(255,255,255,0.1); }
+
+        /* Step UI */
+        .section { display: none; }
+        .section.active { display: block; animation: flowIn 0.8s ease; }
+        @keyframes flowIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .ultra-card {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 24px 24px 24px 50px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ultra-card::before {
+            content: "";
+            position: absolute;
+            left: 24px; top: 0; bottom: -20px;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--p-gold), transparent);
+            opacity: 0.3;
+        }
+        .ultra-card:last-of-type::before { height: 40px; }
+
+        .card-dot {
+            position: absolute;
+            left: 14px; top: 24px;
+            width: 20px; height: 20px;
+            background: #000;
+            border: 1px solid var(--p-gold);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2;
+        }
+        .card-dot::after { content: ""; width: 4px; height: 4px; background: var(--p-gold); border-radius: 50%; }
+
+        .card-head { font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; color: var(--p-gold); }
+        .card-body { font-size: 1rem; color: var(--text-dim); font-weight: 300; margin-bottom: 25px; line-height: 1.6; }
+
+        /* Links */
+        .action-link {
+            display: inline-block;
+            background: var(--p-gold);
+            color: #000;
+            padding: 16px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .outline-link {
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 14px 28px;
+            border-radius: 4px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Lang Dock */
+        .lang-orbit {
+            position: fixed;
+            bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 40px;
+            padding: 15px 30px;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            border: 1px solid var(--card-edge);
+            z-index: 100;
+        }
+        .lang-item {
+            font-size: 0.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.3);
+            cursor: pointer;
+        }
+        .lang-item.active { color: var(--p-gold); }
+
+        /* Footer */
+        .footer { margin-top: 100px; text-align: left; opacity: 0.3; }
+        .vers { font-size: 0.5rem; font-weight: 900; letter-spacing: 5px; }
+        .auto-chip { font-size: 0.5rem; color: var(--p-gold); font-weight: 900; letter-spacing: 2px; margin-top: 15px; display: block; }
+
+        /* Visibility */
+        [data-lang]:not(.show-lang) { display: none !important; }
+        [data-lang="hindi"] { font-family: 'Tiro Devanagari Hindi', serif; }
+    </style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+
+<div class="container">
+    <div class="header">
+        <h1 class="title-h">SHRI<br>SODEVPIR<br>DADA</h1>
+        <span class="subtitle-h">The Official Guide</span>
+    </div>
+
+    <!-- Mode Select -->
+    <div class="selector-pills">
+        <div class="pill active" id="m-android" onclick="switchMode('android')">Android App</div>
+        <div class="pill" id="m-ios" onclick="switchMode('ios')">iPhone</div>
+        <div class="pill" id="m-tour" onclick="switchMode('tour')">Experience</div>
+    </div>
+
+    <!-- Android View -->
+    <div id="android-view" class="section active">
+        <div class="ultra-card">
+            <div class="card-dot"></div>
+            <h2 class="card-head">
+                <span data-lang="gujarati" class="show-lang">પ્લે સ્ટોર પર જાવ</span>
+                <span data-lang="hindi">प्ले स्टोर पर जाएं</span>
+                <span data-lang="english">Open Play Store</span>
+            </h2>
+            <div class="card-body">
+                <span data-lang="gujarati" class="show-lang">નીચેના બટન પર ક્લિક કરો. તે તમને ગૂગલ પ્લે સ્ટોર પર લઈ જશે.</span>
+                <span data-lang="hindi">नीचे दिए गए बटन पर क्लिक करें। यह आपको गूगल प्ले स्टोर पर ले जाएगा।</span>
+                <span data-lang="english">Tap the button below for the official store page.</span>
+            </div>
+            <a href="https://play.google.com/store/apps/details?id=com.monishgori.shriaashapuramaa" target="_blank" class="action-link">INSTALL NOW</a>
+        </div>
+        
+        <div class="ultra-card">
+            <div class="card-dot"></div>
+            <h2 class="card-head">
+                <span data-lang="gujarati" class="show-lang">એપ શરૂ કરો</span>
+                <span data-lang="hindi">ऐप शुरू करें</span>
+                <span data-lang="english">Start Divine App</span>
+            </h2>
+            <div class="card-body">
+                <span data-lang="gujarati" class="show-lang">ઇન્સ્ટોલ થયા પછી હોમ સ્ક્રીન પર 'Shri Aashapura Maa' આઇકોન શોધીને ઓપન કરો.</span>
+                <span data-lang="hindi">इंस्टॉल होने के बाद होम स्क्रीन पर आइकन ढूंढें और ऐप खोलें।</span>
+                <span data-lang="english">Find the icon on your screen and begin.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- iOS View -->
+    <div id="ios-view" class="section">
+        <div class="ultra-card">
+            <div class="card-dot"></div>
+            <h2 class="card-head">
+                <span data-lang="gujarati" class="show-lang">Safari માં લિંક ખોલો</span>
+                <span data-lang="hindi">Safari में लिंक खोलें</span>
+                <span data-lang="english">Access via Safari</span>
+            </h2>
+            <div class="card-body">
+                <span data-lang="gujarati" class="show-lang">આ લિંક તમારા iPhone ના 'Safari' બ્રાઉઝર માં જ ખોલેલી હોવી જોઈએ.</span>
+                <span data-lang="hindi">यह लिंक आपके iPhone के 'Safari' ब्राउज़र में ही खुली होनी चाहिए।</span>
+                <span data-lang="english">Use the official Safari browser on iPhone.</span>
+            </div>
+        </div>
+        <div class="ultra-card">
+            <div class="card-dot"></div>
+            <h2 class="card-head">
+                <span data-lang="gujarati" class="show-lang">'Share' બટન દબાવો</span>
+                <span data-lang="hindi">'Share' बटन दबाएं</span>
+                <span data-lang="english">Tap Share Icon</span>
+            </h2>
+            <div class="card-body">
+                <span data-lang="gujarati" class="show-lang">નીચે દેખાતા 'ચોરસ અને ઉપર એરો' (⬆️) બટન પર ક્લિક કરો.</span>
+                <span data-lang="hindi">नीचे दिख रहे 'Share' (⬆️) बटन पर क्लिक करें।</span>
+                <span data-lang="english">Tap the Share (⬆️) button at the bottom navigation bar.</span>
+            </div>
+        </div>
+        <div class="ultra-card">
+            <div class="card-dot"></div>
+            <h2 class="card-head">
+                <span data-lang="gujarati" class="show-lang">Home Screen માં ઉમેરો</span>
+                <span data-lang="hindi">Home Screen में जोड़ें</span>
+                <span data-lang="english">Add to Desktop</span>
+            </h2>
+            <div class="card-body">
+                <span data-lang="gujarati" class="show-lang">લિસ્ટમાં 'Add to Home Screen' (+) વિકલ્પ શોધીને તેના પર ક્લિક કરો.</span>
+                <span data-lang="hindi">लिस्ट में 'Add to Home Screen' (+) विकल्प चुनें।</span>
+                <span data-lang="english">Select 'Add to Home Screen' in the system menu.</span>
+            </div>
+        </div>
+        <a href="https://shriaashapuramaa.vercel.app/" target="_blank" class="outline-link">START WEB VERSION</a>
+    </div>
+
+    <!-- Tour View -->
+    <div id="tour-view" class="section">
+        <div class="ultra-card">
+            <h2 class="card-head">
+                <span data-lang="gujarati" class="show-lang">મેનુ ક્યાં છે?</span>
+                <span data-lang="hindi">मेनू कहाँ है?</span>
+                <span data-lang="english">Smart Menu</span>
+            </h2>
+            <div class="card-body">
+                <span data-lang="gujarati" class="show-lang">પ્લે/પોઝ બટનની ડાબી બાજુએ આપેલ 'ત્રણ ટપકાં' (...) પર ક્લિક કરવાથી બધા ભજન અને સેટિંગ્સ ખુલશે.</span>
+                <span data-lang="hindi">प्ले/पॉज बटन के बाईं ओर दिए गए 'तीन डॉट्स' (...) पर क्लिक करने से सभी भजन और सेटिंग्स खुलेंगे।</span>
+                <span data-lang="english">Click the 'Three Dots' (...) on the left side of the play/pause button to access Bhajans and Settings.</span>
+            </div>
+        </div>
+        <div class="ultra-card">
+            <h2 class="card-head">
+                <span data-lang="gujarati" class="show-lang">ભક્તિ સાધનો</span>
+                <span data-lang="hindi">भक्ति साधन</span>
+                <span data-lang="english">Divine Tools</span>
+            </h2>
+            <div class="card-body">
+                <span data-lang="gujarati" class="show-lang">કંટ્રોલ બોક્સની ઉપર આપેલ આઇકોનથી તમે ઘંટડી 🔔, શંખ 🐚, ફૂલ 🌸 અને દીવો 🪔 પ્રગટાવી શકો છો.</span>
+                <span data-lang="hindi">कंट्रोल बॉक्स के ऊपर दिए गए आइकन से आप घंटी 🔔, शंख 🐚, फूल 🌸 और दीया जला सकते हैं।</span>
+                <span data-lang="english">Icons above controls: Bell 🔔, Shankh 🐚, Flowers 🌸, and Lamp 🪔.</span>
+            </div>
+        </div>
+        <div class="ultra-card">
+            <h2 class="card-head">
+                <span data-lang="gujarati" class="show-lang">ભજન અને મંત્ર</span>
+                <span data-lang="hindi">भजन और मंत्र</span>
+                <span data-lang="english">Audios</span>
+            </h2>
+            <div class="card-body">
+                <span data-lang="gujarati" class="show-lang">કોઈ પણ લિસ્ટમાંથી ભજન પર ક્લિક કરો. તમે નીચેના પ્લેયરથી તેને ચાલુ કે બંધ કરી શકો છો.</span>
+                <span data-lang="hindi">किसी भी लिस्ट से भजन पर क्लिक करें। आप नीचे दिए गए प्लेयर से इसे कंट्रोल कर सकते हैं।</span>
+                <span data-lang="english">Tap any title in the menu to play. Use the bottom bar to pause.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lang Orbit -->
+    <div class="lang-orbit">
+        <div class="lang-item active" id="o-guj" onclick="changeLang('gujarati')">GUJ</div>
+        <div class="lang-item" id="o-hin" onclick="changeLang('hindi')">HIN</div>
+        <div class="lang-item" id="o-eng" onclick="changeLang('english')">ENG</div>
+    </div>
+
+    <div class="footer">
+        <p class="vers">V1.42 • MASTER EDITION</p>
+        <span id="auto-tag"></span>
+    </div>
+</div>
+
+<script>
+    function changeLang(lang) {
+        document.querySelectorAll('[data-lang]').forEach(el => {
+            el.classList.remove('show-lang');
+            if (el.getAttribute('data-lang') === lang) el.classList.add('show-lang');
+        });
+        document.querySelectorAll('.lang-item').forEach(btn => btn.classList.remove('active'));
+        if(lang === 'gujarati') document.getElementById('o-guj').classList.add('active');
+        if(lang === 'hindi') document.getElementById('o-hin').classList.add('active');
+        if(lang === 'english') document.getElementById('o-eng').classList.add('active');
+        localStorage.setItem('guide_lang', lang);
+    }
+
+    function switchMode(mode) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+        document.getElementById(mode + '-view').classList.add('active');
+        document.getElementById('m-' + mode).classList.add('active');
+    }
+
+    window.onload = () => {
+        const savedLang = localStorage.getItem('guide_lang') || 'gujarati';
+        changeLang(savedLang);
+        const ua = navigator.userAgent.toLowerCase();
+        const isIos = /iphone|ipad|ipod/.test(ua);
+        const target = isIos ? 'ios' : 'android';
+        switchMode(target);
+        const tag = document.getElementById('auto-tag');
+        if (tag) {
+            tag.innerText = isIos ? 'DETECTED : APPLE CORE' : 'DETECTED : ANDROID NATIVE';
+            tag.className = 'auto-chip';
+        }
+    };
+</script>
+</body>
+</html>
