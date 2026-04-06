@@ -1,4 +1,4 @@
-package com.monishgori.shrisodevpirdada;
+package com.monishgori.shriaashapuramaa;
 
 import com.getcapacitor.BridgeActivity;
 

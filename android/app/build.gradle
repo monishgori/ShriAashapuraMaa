@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+configurations.all {
+    exclude group: "com.google.android.gms", module: "play-services-ads-lite"
+}
+
 android {
     namespace = "com.monishgori.shriaashapuramaa"
     compileSdk = rootProject.ext.compileSdkVersion
