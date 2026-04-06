@@ -518,8 +518,8 @@ body {
 .bottom-dashboard-container {
   position: fixed;
   bottom: 0;
-  /* Universal Gap: Ensures room for AdMob banner on ALL phone sizes */
-  padding-bottom: 15px;
+  /* Increased Padding: Ensures controller box stays above the AdMob banner */
+  padding-bottom: calc(env(safe-area-inset-bottom, 15px) + 65px);
   left: 0;
   width: 100%;
   z-index: 1000;
