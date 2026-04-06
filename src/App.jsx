@@ -483,20 +483,22 @@ function App() {
     }
   }, [activeVerse, isLyricsVisible, isPlaying]);
 
-  // Flower Shower Logic
+  // Flower Shower Logic - DIVINE BOUQUET V3 (Rich Intensity)
   const startFlowerShower = () => {
-    const flowerTypes = ['🌸', '🌼', '🌺', '🌹', '🌻', '🌷', '🏵️'];
-    const newFlowers = Array.from({ length: 25 }).map((_, i) => ({
+    const flowerTypes = ['🌼', '🌹', '🪷', '💮', '🌻', '🌷', '🏵️', '🌸', '🏵️', '💮'];
+    const newFlowers = Array.from({ length: 80 }).map((_, i) => ({
       id: Date.now() + i,
       type: flowerTypes[Math.floor(Math.random() * flowerTypes.length)],
       left: Math.random() * 100 + '%',
-      delay: Math.random() * 2 + 's',
-      duration: 4 + Math.random() * 2 + 's'
+      delay: Math.random() * 3 + 's', // Wider delay for layered fall
+      duration: 3 + Math.random() * 5 + 's', // Varying speeds
+      sideSway: (Math.random() * 140 - 70) + 'px', // Increased swaying
+      rotateAxis: Math.random() > 0.5 ? 'X' : 'Y'
     }));
     setFlowers(prev => [...prev, ...newFlowers]);
     setTimeout(() => {
       setFlowers(prev => prev.filter(f => !newFlowers.find(nf => nf.id === f.id)));
-    }, 6000);
+    }, 8000);
   };
 
   const toggleDiya = () => {
@@ -684,12 +686,14 @@ function App() {
           ))}
         </div>
 
-        {/* Flower Shower */}
+        {/* Divine Flower Shower */}
         {flowers.map(flower => (
           <div key={flower.id} className="flower" style={{
             left: flower.left,
             animationDelay: flower.delay,
-            animationDuration: flower.duration
+            animationDuration: flower.duration,
+            '--sway': flower.sideSway,
+            '--rot-axis': flower.rotateAxis
           }}>{flower.type}</div>
         ))}
 
