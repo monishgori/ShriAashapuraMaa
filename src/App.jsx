@@ -703,7 +703,7 @@ function App() {
         <header className="top-bar">
           <div className="divine-centerpiece">
             <div className="divine-name">
-              બોલો શ્રી આશાપુરા મા ની જય
+              શ્રી આશાપુરા મા ની જય
             </div>
           </div>
 
