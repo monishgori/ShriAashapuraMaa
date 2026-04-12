@@ -518,8 +518,8 @@ body {
 .bottom-dashboard-container {
   position: fixed;
   bottom: 0;
-  /* Universal Gap: Ensures room for AdMob banner on ALL phone sizes */
-  padding-bottom: calc(env(safe-area-inset-bottom, 15px) + 85px);
+  /* Increased Padding: Ensures controller box stays above the AdMob banner */
+  padding-bottom: calc(env(safe-area-inset-bottom, 15px) + 65px);
   left: 0;
   width: 100%;
   z-index: 1000;
@@ -1020,21 +1020,34 @@ body.tray-open {
 /* Ritual Effects */
 .flower {
   position: absolute;
-  top: -30px;
-  font-size: 28px;
+  top: -50px;
+  font-size: clamp(22px, 5vw, 32px);
   pointer-events: none;
   z-index: 50;
-  animation: fall linear forwards;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+  will-change: transform, opacity;
+  animation: petal-fall linear forwards;
 }
 
-@keyframes fall {
+@keyframes petal-fall {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0) translateX(0) rotate(0deg) rotateX(0deg);
+    opacity: 0;
+  }
+  10% {
     opacity: 1;
   }
-
+  25% {
+    transform: translateY(25vh) translateX(var(--sway)) rotate(90deg) rotateX(180deg);
+  }
+  50% {
+    transform: translateY(50vh) translateX(0) rotate(180deg) rotateY(360deg);
+  }
+  75% {
+    transform: translateY(75vh) translateX(calc(var(--sway) * -1)) rotate(270deg) rotateX(540deg);
+  }
   100% {
-    transform: translateY(110vh) rotate(360deg);
+    transform: translateY(110vh) translateX(0) rotate(360deg) rotateY(720deg);
     opacity: 0;
   }
 }
