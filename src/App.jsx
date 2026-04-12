@@ -1072,18 +1072,29 @@ function App() {
                   <div className="hindi-text">{verse[language] || verse.gujarati || verse.hindi}</div>
                 </div>
               ))
-            ) : currentMode === 'stutis' ? (
-              <div className="track-selector" style={{ marginBottom: '20px', padding: '0 15px' }}>
-                <select 
-                  value={activeItemIndex} 
-                  onChange={(e) => setActiveItemIndex(Number(e.target.value))}
-                  style={{ width: '100%', padding: '10px', borderRadius: '10px', background: 'rgba(255,255,255,0.1)', color: '#fff', border: '1px solid var(--secondary)' }}
-                >
-                  {stutis.map((item, i) => (
-                    <option key={i} value={i} style={{ background: '#000' }}>{item.name}</option>
-                  ))}
-                </select>
-              </div>
+            ) : ['mantras', 'bhajans', 'aartis', 'stutis'].includes(currentMode) ? (
+              <>
+                <div className="track-selector" style={{ marginBottom: '20px', padding: '0 15px' }}>
+                  <select 
+                    value={activeItemIndex} 
+                    onChange={(e) => setActiveItemIndex(Number(e.target.value))}
+                    style={{ width: '100%', padding: '10px', borderRadius: '10px', background: 'rgba(255,255,255,0.1)', color: '#fff', border: '1px solid var(--secondary)' }}
+                  >
+                    {(currentMode === 'mantras' ? mantras : currentMode === 'bhajans' ? bhajans : currentMode === 'aartis' ? aartis : stutis).map((item, i) => (
+                      <option key={i} value={i} style={{ background: '#000' }}>{item.name}</option>
+                    ))}
+                  </select>
+                </div>
+                {(() => {
+                  const currentItem = (currentMode === 'mantras' ? mantras : currentMode === 'bhajans' ? bhajans : currentMode === 'aartis' ? aartis : stutis)[activeItemIndex];
+                  const lyrics = currentItem?.content?.[language] || currentItem?.content?.gujarati || currentItem?.lyrics;
+                  return lyrics?.map((line, idx) => (
+                    <div key={idx} className="verse glass-panel">
+                      <div className="hindi-text">{typeof line === 'string' ? line : (line[language] || line.gujarati || line.hindi)}</div>
+                    </div>
+                  ));
+                })()}
+              </>
             ) : currentMode === 'history' ? (
               <div className="history-section-container">
                 {historyView === 'menu' ? (
