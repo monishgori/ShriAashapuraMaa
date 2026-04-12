@@ -15,7 +15,6 @@ import { policyData } from './data/policy';
 // Register Native Audio Plugin for Background Playback
 const NativeAudio = registerPlugin('NativeAudio');
 const isNativeAndroid = Capacitor.isNativePlatform() && Capacitor.getPlatform() === 'android';
-
 // Web haptics fallback
 const ImpactStyle = {
   Light: 10,
@@ -32,7 +31,7 @@ const uiTranslations = {
     aarti: "મા ની આરતી",
     stuti: "મા ની સ્તુતિ",
     history: "મા નો ઇતિહાસ",
-    videos: "માતાજી ના દર્શન",
+    videos: "યુટ્યુબ ભક્તિ",
     policy: "ગોપનીયતા નીતિ",
     reminders: "દૈનિક સૂચનાઓ",
     morningQuote: "આજનો વિચાર (6:30 AM)",
@@ -45,7 +44,7 @@ const uiTranslations = {
     sacredJourney: "શ્રી આશાપુરા મા ની પવિત્ર યાત્રા",
     selectMiracle: "વાંચવા માટે ચમત્કાર પસંદ કરો",
     miracleHistory: "ચમત્કારનો ઇતિહાસ",
-    youtubeLibrary: "યૂટ્યૂબ ભક્તિ લાયબ્રેરી",
+    youtubeLibrary: "યુટ્યુબ ભક્તિ લાયબ્રેરી",
     jaap: "જાપ",
     of: "માંથી",
     selected: "(પસંદ કરેલ)",
@@ -59,7 +58,7 @@ const uiTranslations = {
     aarti: "माँ की आरती",
     stuti: "माँ की स्तुति",
     history: "माँ का इतिहास",
-    videos: "माताजी के दर्शन",
+    videos: "यूट्यूब भक्ति",
     policy: "गोपनीयता नीति",
     reminders: "दैनिक सूचनाएं",
     morningQuote: "सुबह का विचार (6:30 AM)",
@@ -108,7 +107,7 @@ const uiTranslations = {
 };
 
 // Memoized Library Tray
-const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, language, startReading, morningToggle, eveningToggle, isMorningOn, isEveningOn, morningTime, setMorningTime, eveningTime, setEveningTime }) => {
+const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, language, startReading, morningToggle, eveningToggle, isMorningOn, isEveningOn }) => {
   const t = uiTranslations[language] || uiTranslations.english;
 
   return (
@@ -124,33 +123,47 @@ const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, languag
         <div className="library-grid">
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('chalisa'); }}>
             <span className="lib-icon">📜</span>
-            <span className="lib-hindi">{t.chalisa}</span>
+            <span className="lib-hindi">
+              {t.chalisa}
+            </span>
           </button>
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('mantras'); }}>
             <span className="lib-icon">💎</span>
-            <span className="lib-hindi">{t.mantras}</span>
+            <span className="lib-hindi">
+              {t.mantras}
+            </span>
           </button>
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('bhajans'); }}>
             <span className="lib-icon">🪕</span>
-            <span className="lib-hindi">{t.bhajans}</span>
+            <span className="lib-hindi">
+              {t.bhajans}
+            </span>
           </button>
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('aartis'); }}>
             <span className="lib-icon">🕯️</span>
-            <span className="lib-hindi">{t.aarti}</span>
+            <span className="lib-hindi">
+              {t.aarti}
+            </span>
           </button>
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('stutis'); }}>
             <span className="lib-icon">🙌</span>
-            <span className="lib-hindi">{t.stuti}</span>
+            <span className="lib-hindi">
+              {t.stuti}
+            </span>
           </button>
           <button className="library-card" onClick={(e) => { e.stopPropagation(); startReading('history'); }}>
             <span className="lib-icon">🏺</span>
-            <span className="lib-hindi">{t.history}</span>
+            <span className="lib-hindi">
+              {t.history}
+            </span>
           </button>
           <button className="library-card library-card-wide" onClick={(e) => { e.stopPropagation(); startReading('videos'); }}>
             <div className="wide-card-content">
               <span className="lib-icon">🎥</span>
               <div className="wide-text">
-                <span className="lib-hindi" style={{ fontSize: '1.3rem' }}>{t.videos}</span>
+                <span className="lib-hindi" style={{ fontSize: '1.3rem' }}>
+                  {t.videos}
+                </span>
               </div>
             </div>
           </button>
@@ -161,45 +174,39 @@ const DevotionalLibrary = React.memo(({ isLibraryOpen, setIsLibraryOpen, languag
             {t.reminders}
           </div>
 
-          <div className="setting-row glass-panel" style={{ display: 'flex', flexDirection: 'column', padding: '12px 15px', marginBottom: '10px', borderRadius: '15px' }}>
-             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-              <div style={{ color: '#fff', fontSize: '0.9rem' }}>
-                <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🌅</span>
-                {t.morningQuote.split(' (')[0]}
-              </div>
-              <div className={`switch ${isMorningOn ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); morningToggle(!isMorningOn); }}>
-                <div className="switch-knob"></div>
-              </div>
+          <div className="setting-row glass-panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 15px', marginBottom: '10px', borderRadius: '15px' }}>
+            <div style={{ color: '#fff', fontSize: '0.9rem' }}>
+              <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🌅</span>
+              {t.morningQuote}
             </div>
-            {isMorningOn && (
-              <div className="time-picker-row" style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.7rem', color: 'var(--secondary)' }}>Select Time:</span>
-                <input type="time" value={morningTime} onChange={(e) => setMorningTime(e.target.value)} className="settings-time-input" />
-              </div>
-            )}
+            <div className={`switch ${isMorningOn ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); morningToggle(!isMorningOn); }}>
+              <div className="switch-knob"></div>
+            </div>
           </div>
 
-          <div className="setting-row glass-panel" style={{ display: 'flex', flexDirection: 'column', padding: '12px 15px', borderRadius: '15px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-              <div style={{ color: '#fff', fontSize: '0.9rem' }}>
-                <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🪔</span>
-                {t.eveningAarti.split(' (')[0]}
-              </div>
-              <div className={`switch ${isEveningOn ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); eveningToggle(!isEveningOn); }}>
-                <div className="switch-knob"></div>
-              </div>
+          <div className="setting-row glass-panel" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 15px', borderRadius: '15px' }}>
+            <div style={{ color: '#fff', fontSize: '0.9rem' }}>
+              <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>🪔</span>
+              {t.eveningAarti}
             </div>
-            {isEveningOn && (
-              <div className="time-picker-row" style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.7rem', color: 'var(--secondary)' }}>Select Time:</span>
-                <input type="time" value={eveningTime} onChange={(e) => setEveningTime(e.target.value)} className="settings-time-input" />
-              </div>
-            )}
+            <div className={`switch ${isEveningOn ? 'on' : ''}`} onClick={(e) => { e.stopPropagation(); eveningToggle(!isEveningOn); }}>
+              <div className="switch-knob"></div>
+            </div>
           </div>
         </div>
-
         <div className="tray-privacy-footer" style={{ textAlign: 'center', padding: '15px 0 10px 0', opacity: 0.5 }}>
-          <button onClick={(e) => { e.stopPropagation(); startReading('policy'); }} style={{ background: 'none', border: 'none', color: 'var(--text-primary)', fontSize: '0.65rem', letterSpacing: '1px', cursor: 'pointer', fontWeight: '500' }}>
+          <button
+            onClick={(e) => { e.stopPropagation(); startReading('policy'); }}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--text-primary)',
+              fontSize: '0.65rem',
+              letterSpacing: '1px',
+              cursor: 'pointer',
+              fontWeight: '500'
+            }}
+          >
             {t.policy.toUpperCase()}
           </button>
         </div>
@@ -232,50 +239,27 @@ function App() {
     try { return Number(localStorage.getItem('pooja_index')) || 0; } catch { return 0; }
   });
   const [activeIncidentIndex, setActiveIncidentIndex] = useState(null);
-  const [historyView, setHistoryView] = useState('menu');
+  const [historyView, setHistoryView] = useState('menu'); // 'menu', 'lifeStory', 'incidents'
   const [isLibraryOpen, setIsLibraryOpen] = useState(false);
-  const [isDiyaLit, setIsDiyaLit] = useState(false);
-  const [isSeeking, setIsSeeking] = useState(false);
-  const [showSplash, setShowSplash] = useState(true);
-  const [dailyQuote, setDailyQuote] = useState({ gujarati: '', hindi: '', english: '' });
+
+  // iOS Safari Stability: Lock body scroll when tray is open to prevent jumping
+  useEffect(() => {
+    if (isLibraryOpen) {
+      document.body.classList.add('tray-open');
+    } else {
+      document.body.classList.remove('tray-open');
+    }
+  }, [isLibraryOpen]);
+  const [sleepTimer, setSleepTimer] = useState(null); // in minutes
+  const [timerId, setTimerId] = useState(null);
 
   // Notification States
   const [morningNotification, setMorningNotification] = useState(() => {
-    try { return localStorage.getItem('maa_morning_notif') === 'true'; } catch { return false; }
+    try { return localStorage.getItem('sodev_morning_notif') === 'true'; } catch { return false; }
   });
   const [eveningNotification, setEveningNotification] = useState(() => {
-    try { return localStorage.getItem('maa_evening_notif') === 'true'; } catch { return false; }
+    try { return localStorage.getItem('sodev_evening_notif') === 'true'; } catch { return false; }
   });
-  const [morningTime, setMorningTime] = useState(() => {
-    try { return localStorage.getItem('maa_morning_time') || '06:30'; } catch { return '06:30'; }
-  });
-  const [eveningTime, setEveningTime] = useState(() => {
-    try { return localStorage.getItem('maa_evening_time') || '18:30'; } catch { return '18:30'; }
-  });
-
-  const repeatCountRef = useRef(repeatCount);
-  useEffect(() => { repeatCountRef.current = repeatCount; }, [repeatCount]);
-
-  const audioRef = useRef(null);
-  const bellAudioRef = useRef(null);
-  const shankhAudioRef = useRef(null);
-
-  // Splash Screen Logic
-  useEffect(() => {
-    const splashTimer = setTimeout(() => setShowSplash(false), 2500);
-    return () => clearTimeout(splashTimer);
-  }, []);
-
-  // Native Permission Helper
-  const ensureNotificationPermission = useCallback(async () => {
-    if (!isNativeAndroid) return true;
-    try {
-      const permission = await NativeAudio.hasNotificationPermission();
-      if (permission?.granted) return true;
-      const requested = await NativeAudio.requestNotificationPermission();
-      return Boolean(requested?.granted);
-    } catch (error) { return false; }
-  }, []);
 
   // Handle Notification Scheduling
   useEffect(() => {
@@ -286,69 +270,103 @@ function App() {
           if (morningNotification || eveningNotification) {
             const reqStatus = await LocalNotifications.requestPermissions();
             if (reqStatus.display !== 'granted') {
+              console.log('Permission not granted for notifications');
               setMorningNotification(false);
               setEveningNotification(false);
               return;
             }
-          } else { return; }
+          } else {
+            return; // no perms and not trying to turn on
+          }
         }
 
+        // Cancel existing
         const pending = await LocalNotifications.getPending();
         if (pending.notifications.length > 0) {
           await LocalNotifications.cancel({ notifications: pending.notifications.map(n => ({ id: n.id })) });
         }
 
         const notificationsList = [];
+
         if (morningNotification) {
-          const [h, m] = morningTime.split(':').map(Number);
           notificationsList.push({
-            title: language === 'gujarati' ? 'શુભ પ્રભાત ધન્ય દિવસ! 🌅' : language === 'english' ? 'Good Morning! 🌅' : 'शुभ प्रभात धन्य दिन! 🌅',
+            title: language === 'gujarati' ? 'શુભ પ્રભાત ધન્ય દિવસ!' : language === 'english' ? 'Good Morning!' : 'शुभ प्रभात धन्य दिन!',
             body: language === 'gujarati' ? 'તમારો આજનો વિચાર વાંચવા માટે ટચ કરો.' : language === 'english' ? 'Tap to read your thought of the day.' : 'आज का विचार पढ़ने के लिए टैप करें।',
             id: 1,
-            schedule: { on: { hour: h, minute: m }, allowWhileIdle: true }
+            schedule: { on: { hour: 6, minute: 30 }, allowWhileIdle: true }
           });
         }
+
         if (eveningNotification) {
-          const [h, m] = eveningTime.split(':').map(Number);
           notificationsList.push({
             title: language === 'gujarati' ? 'આરતી નો સમય' : language === 'english' ? 'Evening Aarti Time' : 'आरती का समय',
             body: language === 'gujarati' ? 'શ્રી આશાપુરા મા ની સાંજની આરતી કરવાનો સમય થઈ ગયો છે.' : language === 'english' ? 'It is time for Shree Aashapura Maa evening Aarti.' : 'श्री आशापुरा माँ की शाम की आरती का समय हो गया है।',
             id: 2,
-            schedule: { on: { hour: h, minute: m }, allowWhileIdle: true }
+            schedule: { on: { hour: 18, minute: 30 }, allowWhileIdle: true }
           });
         }
+
         if (notificationsList.length > 0) {
           await LocalNotifications.schedule({ notifications: notificationsList });
         }
-      } catch (e) {}
+      } catch (e) {
+        console.log('Notification setup failed', e);
+      }
     };
 
     setupNotifications();
-    localStorage.setItem('maa_morning_notif', morningNotification.toString());
-    localStorage.setItem('maa_evening_notif', eveningNotification.toString());
-    localStorage.setItem('maa_morning_time', morningTime);
-    localStorage.setItem('maa_evening_time', eveningTime);
-  }, [morningNotification, eveningNotification, morningTime, eveningTime, language]);
+    localStorage.setItem('sodev_morning_notif', morningNotification.toString());
+    localStorage.setItem('sodev_evening_notif', eveningNotification.toString());
+  }, [morningNotification, eveningNotification, language]);
 
-  // AdMob initialization
+  const [isFocusMode, setIsFocusMode] = useState(false);
+  const [dailyQuote, setDailyQuote] = useState({ gujarati: '', hindi: '', english: '' });
+  const [isDiyaLit, setIsDiyaLit] = useState(false);
+  const [isSeeking, setIsSeeking] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
+
+  const repeatCountRef = useRef(repeatCount);
+  useEffect(() => { repeatCountRef.current = repeatCount; }, [repeatCount]);
+
+  // Splash Screen Logic
   useEffect(() => {
-    const prepareAds = async () => {
-      if (!isNativeAndroid) return;
+    const splashTimer = setTimeout(() => {
+      setShowSplash(false);
+    }, 2500); // Shortened to 2.5s to match user expectation (1-2s range)
+    return () => clearTimeout(splashTimer);
+  }, []);
+
+  // Initialize AdMob & Show Banner
+  useEffect(() => {
+    const initAdMob = async () => {
       try {
+        console.log("AdMob: Starting initialization...");
         await AdMob.initialize();
-        await AdMob.showBanner({
-          adId: 'ca-app-pub-5914382038291713/1282219355',
+
+        // Show Banner Ad at the very bottom
+        const adOptions = {
+          adId: 'ca-app-pub-5914382038291713/1282219355', // User's Ad Unit ID
           adSize: BannerAdSize.ADAPTIVE_BANNER,
           position: BannerAdPosition.BOTTOM_CENTER,
-          margin: 0
-        });
-      } catch (e) {}
+          margin: 0,
+          isTesting: false // LIVE ADS ENABLED 🛡️💰⚡
+        };
+
+        await AdMob.showBanner(adOptions);
+      } catch (e) {
+        console.warn("AdMob Check:", e.message);
+      }
     };
-    prepareAds();
+
+    // Robust Native Detection
+    if (Capacitor.isNativePlatform()) {
+      setTimeout(initAdMob, 2000);
+    }
   }, []);
 
   const backgroundImage = '/assets/images/bgimage.jpeg';
 
+  // Background Slider & Time-based Greeting
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (language === 'gujarati') {
@@ -366,70 +384,80 @@ function App() {
     }
   };
 
-  const triggerHaptic = (style = ImpactStyle.Medium) => { if ('vibrate' in navigator) navigator.vibrate(style); };
+  const triggerHaptic = (style = ImpactStyle.Medium) => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(style);
+    }
+  };
 
   useEffect(() => {
+    // Select daily quote based on current date (Deterministic)
     const today = new Date();
+    // Using simple hash: (Year * 1000) + (Month * 40) + Date
     const dayHash = (today.getFullYear() * 1000) + (today.getMonth() * 40) + today.getDate();
     const quoteIndex = dayHash % quotes.length;
     setDailyQuote(quotes[quoteIndex]);
   }, []);
 
+  // Save Preferences
   useEffect(() => {
     try {
       localStorage.setItem('pooja_mode', currentMode);
       localStorage.setItem('pooja_lang', language);
       localStorage.setItem('pooja_repeat', repeatCount);
       localStorage.setItem('pooja_index', activeItemIndex);
-    } catch (e) {}
+    } catch (e) {
+      console.warn("Storage full or disabled:", e);
+    }
   }, [currentMode, language, repeatCount, activeItemIndex]);
 
-  const formatTime = (time) => {
-    const min = Math.floor(time / 60);
-    const sec = Math.floor(time % 60);
-    return `${min}:${sec < 10 ? '0' : ''}${sec}`;
-  };
-
-  const handleSeek = (e) => {
-    const time = Number(e.target.value);
-    setCurrentTime(time);
-  };
-
-  const handleSeekEnd = (e) => {
-    const time = Number(e.target.value);
-    if (isNativeAndroid) {
-      NativeAudio.seekTo({ position: Math.round(time * 1000) }).catch(() => {});
-    } else if (audioRef.current) {
-      audioRef.current.currentTime = time;
+  // Sleep Timer logic
+  useEffect(() => {
+    if (sleepTimer) {
+      if (timerId) clearTimeout(timerId);
+      const id = setTimeout(() => {
+        if (audioRef.current) {
+          audioRef.current.pause();
+          setIsPlaying(false);
+          setSleepTimer(null);
+          alert("Sleep timer finished. Pooja paused.");
+        }
+      }, sleepTimer * 60000);
+      setTimerId(id);
     }
-    setIsSeeking(false);
+    return () => { if (timerId) clearTimeout(timerId); };
+  }, [sleepTimer]);
+
+  const shareApp = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Aashapura Maa Pooja',
+        text: 'Download Aashapura Maa Pooja app for Chalisa, Mantras and Bhajans!',
+        url: window.location.href,
+      }).catch(console.error);
+    } else {
+      alert("Sharing is not supported on this browser/device.");
+    }
   };
 
-  const startFlowerShower = () => {
-    const flowerTypes = ['🌼', '🌹', '🪷', '💮', '🌻', '🌷', '🏵️', '🌸'];
-    const newFlowers = Array.from({ length: 45 }).map((_, i) => ({
-      id: Math.random().toString(36).substr(2, 9) + i,
-      type: flowerTypes[Math.floor(Math.random() * flowerTypes.length)],
-      left: Math.random() * 100 + '%',
-      delay: Math.random() * 2 + 's',
-      duration: 4 + Math.random() * 4 + 's',
-      sideSway: (Math.random() * 100 - 50) + 'px',
-      rotateAxis: Math.random() > 0.5 ? 'X' : 'Y'
-    }));
-    setFlowers(newFlowers);
-    setTimeout(() => setFlowers([]), 8500);
-  };
 
-  const toggleDiya = () => { triggerHaptic(); setIsDiyaLit(!isDiyaLit); };
 
-  const getCurrentTrackTitle = () => {
-    if (currentMode === 'chalisa') return "Aashapura Maa Chalisa";
-    if (currentMode === 'mantras') return mantras[activeItemIndex]?.name || "Divine Mantra";
-    if (currentMode === 'bhajans') return bhajans[activeItemIndex]?.name || "Maa's Bhajan";
-    if (currentMode === 'aartis') return "Maa's Aarti";
-    if (currentMode === 'stutis') return "Maa's Stuti";
-    return 'Shri Aashapura Maa';
-  };
+
+  // Audio Instance Managed by Ref
+  const audioRef = useRef(null);
+  const bellAudioRef = useRef(null);
+  const shankhAudioRef = useRef(null);
+
+  // Native Audio Helpers
+  const ensureNotificationPermission = useCallback(async () => {
+    if (!isNativeAndroid) return true;
+    try {
+      const permission = await NativeAudio.hasNotificationPermission();
+      if (permission?.granted) return true;
+      const requested = await NativeAudio.requestNotificationPermission();
+      return Boolean(requested?.granted);
+    } catch (error) { return false; }
+  }, []);
 
   const prepareNativeTrack = useCallback(async (path) => {
     try {
@@ -457,45 +485,6 @@ function App() {
     } catch (error) {}
   }, [isSeeking]);
 
-  const getAudioPath = () => {
-    if (currentMode === 'chalisa') return "/assets/audio/chalisa1.mp3";
-    if (currentMode === 'mantras') return mantras[activeItemIndex]?.audio || "/assets/audio/om.mp3";
-    if (currentMode === 'bhajans') return bhajans[activeItemIndex]?.audio || "/assets/audio/om.mp3";
-    if (currentMode === 'aartis') return aartis[activeItemIndex]?.audio || "/assets/audio/Aarti.mp3";
-    if (currentMode === 'stutis') return stutis[activeItemIndex]?.audio || "/assets/audio/Ganesh Stuti.mp3";
-    return "/assets/audio/om.mp3";
-  };
-
-  useEffect(() => {
-    const audioModes = ['chalisa', 'mantras', 'bhajans', 'aartis', 'stutis'];
-    if (!audioModes.includes(currentMode)) return;
-    const path = getAudioPath();
-    setCurrentTime(0);
-    setDuration(0);
-    setCurrentRepeat(0);
-    setIsPlaying(false);
-    if (isNativeAndroid) {
-      prepareNativeTrack(path);
-    } else {
-      if (audioRef.current) { audioRef.current.src = path; audioRef.current.load(); }
-      else {
-        const audio = new Audio(path);
-        audio.ontimeupdate = () => { if (!isSeeking) setCurrentTime(audio.currentTime); };
-        audio.onloadedmetadata = () => setDuration(audio.duration);
-        audio.onplay = () => setIsPlaying(true);
-        audio.onpause = () => setIsPlaying(false);
-        audio.onended = () => {
-          if (currentRepeat + 1 < repeatCount) {
-            setCurrentRepeat(prev => prev + 1);
-            audio.currentTime = 0;
-            audio.play();
-          } else { setIsPlaying(false); }
-        };
-        audioRef.current = audio;
-      }
-    }
-  }, [activeItemIndex, currentMode]);
-
   useEffect(() => {
     if (!isNativeAndroid) return;
     let stateListener, endedListener;
@@ -506,160 +495,737 @@ function App() {
         setDuration((status?.duration || 0) / 1000);
         setCurrentRepeat(Number(status?.currentRepeat || 0));
       });
-      endedListener = await NativeAudio.addListener('playbackEnded', () => { setIsPlaying(false); syncNativeStatus(); });
+      endedListener = await NativeAudio.addListener('playbackEnded', () => {
+        setIsPlaying(false);
+        syncNativeStatus();
+      });
       syncNativeStatus();
     };
     setup();
-    return () => { stateListener?.remove(); endedListener?.remove(); };
+    return () => {
+      stateListener?.remove();
+      endedListener?.remove();
+    };
   }, [isSeeking, syncNativeStatus]);
 
-  useEffect(() => { if (isNativeAndroid) NativeAudio.setRepeatCount({ repeatCount }).catch(() => {}); }, [repeatCount]);
+  useEffect(() => {
+    if (isNativeAndroid) {
+      NativeAudio.setRepeatCount({ repeatCount }).catch(() => {});
+    }
+  }, [repeatCount]);
+
+  const getCurrentTrackTitle = () => {
+    if (currentMode === 'chalisa') return "Aashapura Maa Chalisa";
+    if (currentMode === 'mantras') return mantras[activeItemIndex]?.name || "Divine Mantra";
+    if (currentMode === 'bhajans') return bhajans[activeItemIndex]?.name || "Maa's Bhajan";
+    if (currentMode === 'aartis') return "Maa's Aarti";
+    if (currentMode === 'stutis') return stutis[activeItemIndex]?.name || "Maa's Stuti";
+    return 'Shri Aashapura Maa';
+  };
+
+  // GLOBAL AUDIO CLEANUP (Memory Leak Prevention)
+  useEffect(() => {
+    return () => {
+      [audioRef, bellAudioRef, shankhAudioRef].forEach(ref => {
+        if (ref.current) {
+          ref.current.pause();
+          ref.current.src = "";
+          ref.current = null;
+        }
+      });
+    };
+  }, []);
+
+  const handleSeek = (e) => {
+    const time = Number(e.target.value);
+    setCurrentTime(time);
+  };
+
+  const handleSeekEnd = (e) => {
+    const time = Number(e.target.value);
+    if (isNativeAndroid) {
+      NativeAudio.seekTo({ position: Math.round(time * 1000) }).catch(() => {});
+    } else if (audioRef.current) {
+      audioRef.current.currentTime = time;
+    }
+    setIsSeeking(false);
+  };
+
+  const formatTime = (time) => {
+    const min = Math.floor(time / 60);
+    const sec = Math.floor(time % 60);
+    return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+  };
+
+  // Auto-scroll logic: When activeVerse changes, scroll the lyrics container
+  useEffect(() => {
+    if (isLyricsVisible && isPlaying) {
+      const activeElement = document.querySelector('.active-verse');
+      if (activeElement) {
+        activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  }, [activeVerse, isLyricsVisible, isPlaying]);
+
+  // Flower Shower Logic - DIVINE BOUQUET V3 (Rich Intensity)
+  const startFlowerShower = () => {
+    const flowerTypes = ['🌼', '🌹', '🪷', '💮', '🌻', '🌷', '🏵️', '🌸', '🏵️', '💮'];
+    const newFlowers = Array.from({ length: 80 }).map((_, i) => ({
+      id: Date.now() + i,
+      type: flowerTypes[Math.floor(Math.random() * flowerTypes.length)],
+      left: Math.random() * 100 + '%',
+      delay: Math.random() * 3 + 's', // Wider delay for layered fall
+      duration: 3 + Math.random() * 5 + 's', // Varying speeds
+      sideSway: (Math.random() * 140 - 70) + 'px', // Increased swaying
+      rotateAxis: Math.random() > 0.5 ? 'X' : 'Y'
+    }));
+    setFlowers(prev => [...prev, ...newFlowers]);
+    setTimeout(() => {
+      setFlowers(prev => prev.filter(f => !newFlowers.find(nf => nf.id === f.id)));
+    }, 8000);
+  };
+
+  const toggleDiya = () => {
+    triggerHaptic();
+    setIsDiyaLit(!isDiyaLit);
+  };
+
+  // Robust Audio Instance Creation for Mobile/Android
+  const createAudioInstance = (path) => {
+    console.log("INITIALIZING AUDIO:", path);
+
+    // Ensure we have a persistent audio instance
+    if (!audioRef.current) {
+      audioRef.current = new Audio();
+    }
+
+    const audio = audioRef.current;
+    audio.pause();
+
+    // Set source and properties for faster loading
+    audio.src = path;
+    audio.preload = "auto";
+    audio.load();
+
+    // Setup events
+    audio.onplay = () => setIsPlaying(true);
+    audio.onpause = () => setIsPlaying(false);
+
+    audio.ontimeupdate = () => {
+      if (!isSeeking) {
+        setCurrentTime(audio.currentTime);
+        if (audio.duration && isFinite(audio.duration)) {
+          setDuration(audio.duration);
+        }
+      }
+    };
+
+    audio.onloadedmetadata = () => {
+      if (audio.duration && isFinite(audio.duration)) {
+        setDuration(audio.duration);
+      }
+    };
+
+    audio.onerror = () => {
+      setIsPlaying(false);
+    };
+
+    audio.onended = null;
+    return audio;
+  };
+
+  const getAudioPath = () => {
+    const audioModes = ['chalisa', 'mantras', 'bhajans', 'aartis', 'stutis'];
+    if (!audioModes.includes(currentMode)) return "/assets/audio/chalisa1.mp3";
+
+    return currentMode === 'chalisa' ? "/assets/audio/chalisa1.mp3" :
+      currentMode === 'mantras' ? "/assets/audio/om.mp3" :
+        currentMode === 'bhajans' ? (bhajans[activeItemIndex]?.audio || "/assets/audio/Jholi_Meri_Bhar_De.mp3") :
+          currentMode === 'aartis' ? (aartis[activeItemIndex]?.audio || "/assets/audio/aarti.mp3") :
+            currentMode === 'stutis' ? (stutis[activeItemIndex]?.audio || "/assets/audio/Stuti.mp3") :
+              "/assets/audio/chalisa1.mp3";
+  };
+
+  // Effect to handle source changes (switching tracks)
+  useEffect(() => {
+    const audioModes = ['chalisa', 'mantras', 'bhajans', 'aartis', 'stutis'];
+    if (!audioModes.includes(currentMode)) return;
+
+    const path = getAudioPath();
+
+    // RESET counters on track change
+    setCurrentTime(0);
+    setDuration(0);
+    setCurrentRepeat(0);
+    setIsPlaying(false);
+
+    if (isNativeAndroid) {
+      prepareNativeTrack(path);
+    } else if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.src = path;
+      audioRef.current.load(); // Prepare for next play
+    } else {
+      createAudioInstance(path); // Pre-warm
+    }
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, [currentMode, activeItemIndex]);
+
+  // ROBUST REPEATER LOGIC: Handles looping with state directly
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.onended = () => {
+      if (currentRepeat + 1 < repeatCount) {
+        setCurrentRepeat(prev => prev + 1);
+        audio.currentTime = 0;
+        // Small delay protects against "rapid fire" bugs on some mobile OS
+        setTimeout(() => {
+          if (audio) {
+            audio.play().catch(e => console.error("Repeater Error:", e.message));
+          }
+        }, 200);
+      } else {
+        setIsPlaying(false);
+        setCurrentRepeat(0);
+        audio.currentTime = audio.duration || 0;
+      }
+    };
+  }, [currentRepeat, repeatCount]);
 
   const ringBell = () => {
-    triggerHaptic(ImpactStyle.Heavy); setIsBellRinging(true);
-    if (isNativeAndroid) NativeAudio.bell().catch(() => {});
-    else { if (!bellAudioRef.current) bellAudioRef.current = new Audio("/assets/audio/bell.mp3"); bellAudioRef.current.currentTime = 0; bellAudioRef.current.play(); }
+    triggerHaptic(ImpactStyle.Heavy);
+    setIsBellRinging(true);
+    if (isNativeAndroid) {
+      NativeAudio.bell().catch(() => {});
+    } else {
+      if (!bellAudioRef.current) {
+        bellAudioRef.current = new Audio("/assets/audio/bell.mp3");
+        bellAudioRef.current.onerror = () => console.log("Bell audio failed to load");
+      }
+      bellAudioRef.current.currentTime = 0;
+      bellAudioRef.current.play().catch(() => { });
+    }
     setTimeout(() => setIsBellRinging(false), 500);
   };
 
   const playShankh = () => {
     triggerHaptic(ImpactStyle.Heavy);
-    if (isNativeAndroid) NativeAudio.shankh().catch(() => {});
-    else { if (!shankhAudioRef.current) shankhAudioRef.current = new Audio("/assets/audio/shankh.mp3"); shankhAudioRef.current.currentTime = 0; shankhAudioRef.current.play(); }
+    if (isNativeAndroid) {
+      NativeAudio.shankh().catch(() => {});
+    } else {
+      if (!shankhAudioRef.current) {
+        shankhAudioRef.current = new Audio("/assets/audio/shankh.mp3");
+        shankhAudioRef.current.onerror = () => console.log("Shankh audio failed to load");
+      }
+      shankhAudioRef.current.currentTime = 0;
+      shankhAudioRef.current.play().catch(() => { });
+    }
   };
 
   const startReading = useCallback((mode) => {
-    setCurrentMode(mode); setIsLyricsVisible(true); setIsLibraryOpen(false);
-    setActiveItemIndex(0); setActiveVerse(0); setCurrentRepeat(0);
-    if (isNativeAndroid) NativeAudio.stop().catch(() => {});
-    else if (audioRef.current) audioRef.current.pause();
-  }, []);
-
-  const renderContent = () => {
-    if (currentMode === 'policy') return (
-      <div className="policy-section-container glass-panel">
-        <div className="top-actions-row"><button className="back-btn glass-panel" onClick={() => setIsLyricsVisible(false)}>← {t.closeReading}</button></div>
-        <div className="page-header"><div className="page-title">{policyData.title[language] || policyData.title.english}</div></div>
-        {policyData.sections.map((section, idx) => (
-          <div key={idx} className="verse glass-panel"><div style={{ color: 'var(--secondary)', fontSize: '1.2rem' }}>{section.subtitle[language] || section.subtitle.english}</div><div className="hindi-text" style={{ fontSize: '1.1rem', textAlign: 'left' }}>{section.text[language] || section.text.english}</div></div>
-        ))}
-      </div>
-    );
-
-    if (currentMode === 'videos') return (
-      <div className="videos-section-container">
-        <div className="top-actions-row"><button className="back-btn glass-panel" onClick={() => setIsLyricsVisible(false)}>← {t.closeReading}</button></div>
-        <div className="videos-grid-flow">
-          {videos.map((vid) => (
-            <div key={vid.id} className="video-premium-card glass-panel"><div className="video-container-wrapper"><iframe width="100%" height="200" src={`https://www.youtube.com/embed/${vid.youtubeId}?modestbranding=1&rel=0`} title={vid.title} frameBorder="0" allowFullScreen></iframe></div><div className="video-card-details"><div className="video-card-title">{vid[language] || vid.gujarati || vid.hindi}</div></div></div>
-          ))}
-        </div>
-      </div>
-    );
-
-    if (currentMode === 'history') {
-      if (historyView === 'menu') return (
-        <div className="history-menu-grid">
-          <div className="top-actions-row"><button className="back-btn glass-panel" onClick={() => setIsLyricsVisible(false)}>← {t.closeReading}</button></div>
-          <button className="history-menu-card glass-panel" onClick={() => setHistoryView('lifeStory')}><div className="menu-card-title">{t.lifeStory}</div></button>
-          <button className="history-menu-card glass-panel" onClick={() => setHistoryView('incidents')}><div className="menu-card-title">{t.incidentIndex}</div></button>
-        </div>
-      );
-      if (historyView === 'lifeStory') return (
-        <div className="history-section-container">
-          <div className="top-actions-row"><button className="back-btn glass-panel" onClick={() => setHistoryView('menu')}>← {t.goBack}</button></div>
-          {historyData.lifeStory.content.map((item, idx) => (<div key={idx} className="verse glass-panel"><div className="hindi-text" style={{ fontSize: '1.1rem', textAlign: 'left' }}>{item.text[language] || item.text.gujarati}</div></div>))}
-        </div>
-      );
-      if (historyView === 'incidents') {
-        if (activeIncidentIndex !== null) return (
-          <div className="history-section-container">
-            <div className="top-actions-row"><button className="back-btn glass-panel" onClick={() => setActiveIncidentIndex(null)}>← {t.goBack}</button></div>
-            <div className="incident-content-full glass-panel">{historyData.incidents[activeIncidentIndex].content[language] || historyData.incidents[activeIncidentIndex].content.gujarati}</div>
-          </div>
-        );
-        return (
-          <div className="incidents-grid">
-            <div className="top-actions-row"><button className="back-btn glass-panel" onClick={() => setHistoryView('menu')}>← {t.goBack}</button></div>
-            {historyData.incidents.map((inc, i) => (<button key={i} className="incident-select-card glass-panel" onClick={() => setActiveIncidentIndex(i)}>{inc.title[language]}</button>))}
-          </div>
-        );
-      }
+    triggerHaptic(ImpactStyle.Light);
+    if (mode === 'history') {
+      setHistoryView('menu');
+      setActiveIncidentIndex(null);
     }
 
-    const currentLines = currentMode === 'chalisa' ? (chalisaData.lyrics?.map(v => v[language] || v.gujarati || v.hindi) || []) :
-                        currentMode === 'mantras' ? (mantras[activeItemIndex]?.content?.[language] || [mantras[activeItemIndex]?.name || '']) :
-                        currentMode === 'bhajans' ? (bhajans[activeItemIndex]?.content?.[language] || [bhajans[activeItemIndex]?.name || '']) :
-                        currentMode === 'aartis' ? (aartis[activeItemIndex]?.content?.[language] || [aartis[activeItemIndex]?.name || '']) :
-                        currentMode === 'stutis' ? (stutis[activeItemIndex]?.content?.[language] || [stutis[activeItemIndex]?.name || '']) : [];
+    const audioModes = ['chalisa', 'mantras', 'bhajans', 'aartis', 'stutis'];
+    const isNewModeAudio = audioModes.includes(mode);
 
-    return (
-      <main className="lyrics-container">
-        <div className="top-actions-row"><button className="back-btn glass-panel" onClick={() => setIsLyricsVisible(false)}>← {t.closeReading}</button></div>
-        {(currentMode === 'bhajans' || currentMode === 'mantras' || currentMode === 'aartis' || currentMode === 'stutis') && (
-          <div className="track-selector"><select value={activeItemIndex} onChange={(e) => setActiveItemIndex(Number(e.target.value))}>{(currentMode === 'mantras' ? mantras : currentMode === 'bhajans' ? bhajans : currentMode === 'aartis' ? aartis : stutis).map((item, i) => (<option key={i} value={i}>{item.name}</option>))}</select></div>
-        )}
-        {currentLines.map((line, idx) => (<div key={idx} className={`verse glass-panel ${activeVerse === idx ? 'active-verse' : ''}`} onClick={() => { setActiveVerse(idx); if (!isNativeAndroid && audioRef.current) audioRef.current.currentTime = (audioRef.current.duration / currentLines.length) * idx; }}><div className="hindi-text">{line}</div></div>))}
-      </main>
-    );
-  };
+    // 1. If we are staying in the same mode, just show the view
+    // 2. If we are entering a non-audio mode (History/Videos), don't disturb background audio
+    if (currentMode === mode || !isNewModeAudio) {
+      setCurrentMode(mode);
+      setIsLyricsVisible(true);
+      setIsLibraryOpen(false);
+      return;
+    }
+
+    // 3. Otherwise, we are switching to a DIFFERENT audio mode - stop previous
+    setCurrentMode(mode);
+    setIsLyricsVisible(true);
+    setIsLibraryOpen(false);
+    setActiveItemIndex(0);
+    setIsPlaying(false);
+    if (isNativeAndroid) {
+      NativeAudio.stop().catch(() => {});
+    } else if (audioRef.current) {
+      audioRef.current.pause();
+    }
+  }, [currentMode]);
 
   return (
-    <div className={`app-container ${showSplash ? 'splash-active' : ''}`}>
-      {flowers.map(f => (<div key={f.id} className="flower" style={{ left: f.left, animationDelay: f.delay, animationDuration: f.duration }}>{f.type}</div>))}
-      <div className="background-slider" onClick={() => setIsLyricsVisible(false)}><img src={backgroundImage} alt="MAA" className="bg-image active" /><div className="bg-overlay"></div></div>
-      <header className="top-bar">
-        <div className="divine-name" style={{ fontSize: '2.2rem' }}>શ્રી આશાપુરા મા</div>
-        <div className="top-bar-side-content">
-          <div className="header-greeting">{getGreeting()}</div>
-          <div className="language-selector"><select value={language} onChange={(e) => setLanguage(e.target.value)}><option value="gujarati">ગુજરાતી</option><option value="hindi">हिन्दी</option><option value="english">English</option></select></div>
+    <>
+      <div className={`app-container ${showSplash ? 'splash-active' : ''} ${isLyricsVisible ? 'view-mode' : 'home-mode'}`}>
+        {/* Diya (Lamp) */}
+        <div className={`diya-container ${isDiyaLit ? 'lit' : ''}`}>
+          <div className="diya-glow"></div>
+          <div className="diya-base">🪔</div>
         </div>
-      </header>
-
-      <main className="main-content">
-        {!isLyricsVisible ? (
-          <div className="menu-grid">
-             <div className="daily-quote-card glass-panel" onClick={() => setIsLibraryOpen(true)}>
-                <div className="quote-header">❝ {language === 'english' ? 'Thought of the Day' : 'આજનો વિચાર'}</div>
-                <div className="main-quote">{dailyQuote[language] || dailyQuote.gujarati}</div>
-             </div>
-             <button className="menu-card glass-panel" onClick={() => startReading('chalisa')}><span className="card-hindi">મા ની ચાલીસા</span><span className="card-eng">CHALISA</span></button>
-             <button className="menu-card glass-panel" onClick={() => startReading('mantras')}><span className="card-hindi">સિદ્ધ મંત્ર</span><span className="card-eng">MANTRAS</span></button>
-             <button className="menu-card glass-panel" onClick={() => startReading('bhajans')}><span className="card-hindi">ભજન સંગ્રહ</span><span className="card-eng">BHAJANS</span></button>
-             <button className="menu-card glass-panel" onClick={() => startReading('aartis')}><span className="card-hindi">મા ની આરતી</span><span className="card-eng">AARTI</span></button>
-             <button className="menu-card glass-panel" onClick={() => startReading('stutis')}><span className="card-hindi">મા ની સ્તુતિ</span><span className="card-eng">STUTI</span></button>
-             <button className="menu-card glass-panel" onClick={() => startReading('history')}><span className="card-hindi">મા નો ઇતિહાસ</span><span className="card-eng">HISTORY</span></button>
-             <button className="menu-card glass-panel" style={{ gridColumn: 'span 2' }} onClick={() => startReading('videos')}><span className="card-hindi">માતાજી ના દર્શન</span><span className="card-eng">VIDEOS</span></button>
-          </div>
-        ) : renderContent()}
-      </main>
-
-      <div className="bottom-dashboard-container">
-        <div className="ritual-island glass-panel" style={{ pointerEvents: 'auto' }}>
-           <button className={`pooja-btn ${isBellRinging ? 'active' : ''}`} onClick={ringBell}>🔔</button>
-           <button className="pooja-btn" onClick={playShankh}>🐚</button>
-           <button className="pooja-btn" onClick={startFlowerShower}>🌸</button>
-           <button className={`pooja-btn ${isDiyaLit ? 'on' : ''}`} onClick={toggleDiya}>🪔</button>
+        {/* Ambient Particles */}
+        <div className="particles-container">
+          {Array.from({ length: 15 }).map((_, i) => (
+            <div key={i} className="particle" style={{
+              left: Math.random() * 100 + '%',
+              top: Math.random() * 100 + '%',
+              animationDelay: Math.random() * 5 + 's',
+              width: 2 + Math.random() * 3 + 'px',
+              height: 2 + Math.random() * 3 + 'px'
+            }}></div>
+          ))}
         </div>
 
-        <div className="control-island glass-panel" style={{ pointerEvents: 'auto' }}>
-          <div className="dock-seek-row">
-            <span className="dock-time" style={{ color: '#fff', fontSize: '0.7rem' }}>{formatTime(currentTime)}</span>
-            <input type="range" className="seek-bar" min="0" max={duration || 0} step="0.1" value={currentTime} onInput={handleSeek} onTouchStart={() => setIsSeeking(true)} onMouseDown={() => setIsSeeking(true)} onMouseUp={handleSeekEnd} onTouchEnd={handleSeekEnd} />
-            <span className="dock-time" style={{ color: '#fff', fontSize: '0.7rem' }}>{formatTime(duration)}</span>
+        {/* Divine Flower Shower */}
+        {flowers.map(flower => (
+          <div key={flower.id} className="flower" style={{
+            left: flower.left,
+            animationDelay: flower.delay,
+            animationDuration: flower.duration,
+            '--sway': flower.sideSway,
+            '--rot-axis': flower.rotateAxis
+          }}>{flower.type}</div>
+        ))}
+
+        {/* Background Section */}
+        <div className="background-slider" onClick={() => setIsLyricsVisible(false)}>
+          <img src={backgroundImage} alt="MAA" className="bg-image active" />
+          <div className="bg-overlay"></div>
+        </div>
+
+        {/* Top Bar */}
+        <header className="top-bar">
+          <div className="divine-centerpiece">
+            <div className="divine-name">
+              શ્રી આશાપુરા મા ની જય
+            </div>
           </div>
 
-          <div className="dock-controls-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px' }}>
-            <button className="dock-lib-btn" onClick={() => setIsLibraryOpen(true)}>⋯</button>
-            <button className="dock-play-btn" onClick={() => { if (isNativeAndroid) { isPlaying ? NativeAudio.pause() : NativeAudio.play(); } else if (audioRef.current) { isPlaying ? audioRef.current.pause() : audioRef.current.play(); } }}>{isPlaying ? '⏸' : '▶'}</button>
-            <div className="dock-repeat-island"><span className="repeat-icon">🔁</span><select value={repeatCount} onChange={(e) => setRepeatCount(Number(e.target.value))} className="repeat-mini-select"><option value="1">1x</option><option value="3">3x</option><option value="11">11x</option><option value="21">21x</option><option value="108">108x</option></select></div>
+          <div className="top-bar-side-content">
+            <div className="header-greeting" onClick={() => setIsLyricsVisible(false)}>
+              <div className="greeting-text">{getGreeting()}</div>
+            </div>
+
+            {!isLyricsVisible && !isFocusMode && dailyQuote[language] && (
+              <div className="daily-quote-card glass-panel">
+                <div className="quote-header">
+                  <span className="quote-icon">❝</span>
+                  <span className="quote-label">{t.morningQuote.split(' (')[0]}</span>
+                </div>
+                <div className="quote-content">
+                  <div className="main-quote">
+                    {dailyQuote[language]}
+                  </div>
+                </div>
+              </div>
+            )}
+
+          </div>
+        </header>
+
+        <div className="bottom-dashboard-container">
+
+          {/* POOJA DOCK: Celestial Duo-Island */}
+          <div className="pooja-dock">
+
+            {/* Island 1: Rituals */}
+            <div className="ritual-island glass-panel">
+              <div className="ritual-scroller">
+                <div className="dock-icon-item" onClick={ringBell}>
+                  <div className={`dock-icon ${isBellRinging ? 'bell-ringing' : ''}`}>🔔</div>
+                  <span>Bell</span>
+                </div>
+                <div className="dock-icon-item" onClick={playShankh}>
+                  <div className="dock-icon">🐚</div>
+                  <span>Shankh</span>
+                </div>
+                <div className="dock-icon-item" onClick={startFlowerShower}>
+                  <div className="dock-icon">🌸</div>
+                  <span>Flowers</span>
+                </div>
+                <div className="dock-icon-item" onClick={toggleDiya}>
+                  <div className={`dock-icon ${isDiyaLit ? 'active' : ''}`}>🪔</div>
+                  <span>Lamp</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Island 2: Main Controls */}
+            <div className="control-island glass-panel">
+              <div className="dock-controls-row">
+                <button
+                  className={`dock-lib-btn ${isLibraryOpen ? 'active' : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    triggerHaptic(ImpactStyle.Light);
+                    setIsLibraryOpen(!isLibraryOpen);
+                  }}
+                >
+                  ⋯
+                </button>
+
+                <button className="dock-play-btn" onClick={(e) => {
+                  e.stopPropagation();
+                  triggerHaptic(ImpactStyle.Medium);
+
+                  // CRITICAL: Ensure audio instance exists on user interaction for iOS Safari
+                  if (!isNativeAndroid && !audioRef.current) {
+                    createAudioInstance(getAudioPath());
+                  }
+
+                  if (isNativeAndroid) {
+                    isPlaying ? NativeAudio.pause() : NativeAudio.play();
+                  } else {
+                    const audio = audioRef.current;
+                    if (audio) {
+                      if (isPlaying) {
+                        audio.pause();
+                        setIsPlaying(false);
+                      } else {
+                        const playPromise = audio.play();
+                        if (playPromise !== undefined) {
+                          playPromise
+                            .then(() => setIsPlaying(true))
+                            .catch(err => console.error("Dock Play Error:", err.message));
+                        }
+                      }
+                    }
+                  }
+                }}>
+                  {isPlaying ? '⏸' : '▶'}
+                </button>
+
+                <div className="language-pill-container mini">
+                  <button
+                    className={`lang-pill-btn ${language === 'gujarati' ? 'active' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); setLanguage('gujarati'); triggerHaptic(); }}
+                  >
+                    G
+                  </button>
+                  <button
+                    className={`lang-pill-btn ${language === 'hindi' ? 'active' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); setLanguage('hindi'); triggerHaptic(); }}
+                  >
+                    H
+                  </button>
+                  <button
+                    className={`lang-pill-btn ${language === 'english' ? 'active' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); setLanguage('english'); triggerHaptic(); }}
+                  >
+                    E
+                  </button>
+                </div>
+
+                <div className="dock-repeat-island glass-panel">
+                  <span className="repeat-icon">🔁</span>
+                  <select
+                    value={repeatCount}
+                    onChange={(e) => setRepeatCount(Number(e.target.value))}
+                    className="repeat-mini-select"
+                  >
+                    <option value="1">1x</option>
+                    <option value="3">3x</option>
+                    <option value="11">11x</option>
+                    <option value="21">21x</option>
+                    <option value="108">108x</option>
+                  </select>
+                  {repeatCount > 1 && (
+                    <div className="dock-jaap-badge">
+                      {currentRepeat + 1}/{repeatCount}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="dock-seek-row">
+                <span className="dock-time">{formatTime(currentTime)}</span>
+                <div className="seek-container">
+                  <div
+                    className="seek-fill"
+                    style={{ width: `${(currentTime / (duration || 1)) * 100}%` }}
+                  ></div>
+                  <input
+                    type="range"
+                    className="seek-bar"
+                    min="0"
+                    max={duration || 0}
+                    value={currentTime}
+                    onMouseDown={() => setIsSeeking(true)}
+                    onTouchStart={() => setIsSeeking(true)}
+                    onMouseUp={handleSeekEnd}
+                    onTouchEnd={handleSeekEnd}
+                    onChange={handleSeek}
+                  />
+                </div>
+                <span className="dock-time">{formatTime(duration)}</span>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* DEVOTIONAL LIBRARY TRAY (Isolated to prevent flickering/jumping) */}
+        <DevotionalLibrary
+          isLibraryOpen={isLibraryOpen}
+          setIsLibraryOpen={setIsLibraryOpen}
+          language={language}
+          startReading={startReading}
+          morningToggle={setMorningNotification}
+          eveningToggle={setEveningNotification}
+          isMorningOn={morningNotification}
+          isEveningOn={eveningNotification}
+        />
+
+        {/* LYRICS VIEW */}
+        {isLyricsVisible && (
+          <main className="lyrics-container">
+            <div className="top-actions-row">
+              <div className="back-btn glass-panel" onClick={() => setIsLyricsVisible(false)}>
+                <span className="back-icon">←</span> {t.closeReading}
+              </div>
+              {currentMode === 'history' && historyView !== 'menu' && (
+                <div className="back-btn glass-panel secondary-back" onClick={() => {
+                  if (historyView === 'incidentDetail') {
+                    setHistoryView('incidents');
+                  } else {
+                    setHistoryView('menu');
+                  }
+                  triggerHaptic();
+                }}>
+                  <span className="back-icon">↺</span> {t.goBack}
+                </div>
+              )}
+            </div>
+
+            <div className="page-header">
+              <div className="page-title">
+                {currentMode === 'history' ? (
+                  historyView === 'menu' ? t.history :
+                    historyView === 'lifeStory' ? t.lifeStory :
+                      historyView === 'incidentDetail' && activeIncidentIndex !== null ? historyData.incidents[activeIncidentIndex].title[language] : t.incidentIndex
+                ) : (['mantras', 'bhajans', 'aartis', 'stutis'].includes(currentMode) ? (
+                  (currentMode === 'mantras' ? mantras : currentMode === 'bhajans' ? bhajans : currentMode === 'aartis' ? aartis : stutis)[activeItemIndex]?.name
+                ) : t[currentMode] || t.appOpening)}
+              </div>
+              <div className="page-subtitle">
+                {['chalisa', 'mantras', 'bhajans', 'aartis', 'stutis'].includes(currentMode) && repeatCount > 1 && (
+                  <div className="jaap-counter">
+                    {t.jaap} {currentRepeat + 1} {t.of} {repeatCount}
+                  </div>
+                )}
+                {currentMode === 'videos' && t.youtubeLibrary}
+              </div>
+            </div>
+
+            {currentMode === 'chalisa' ? (
+              chalisaData.lyrics.map((verse, index) => (
+                <div key={index} className={`verse glass-panel ${activeVerse === index ? 'active-verse' : ''}`}>
+                  <div className="hindi-text">{verse[language] || verse.gujarati || verse.hindi}</div>
+                </div>
+              ))
+            ) : currentMode === 'mantras' ? (
+              mantras.map((mantra, index) => (
+                <div
+                  key={index}
+                  className={`verse glass-panel ${activeItemIndex === index ? 'active-verse' : ''}`}
+                  onClick={() => {
+                    setActiveItemIndex(index);
+                    setIsPlaying(false);
+                    if (audioRef.current) {
+                      audioRef.current.pause();
+                    }
+                  }}
+                >
+                  <div style={{ color: 'var(--secondary)', fontSize: '0.9rem', marginBottom: '10px' }}>
+                    {mantra.name} {activeItemIndex === index && ` ${t.selected}`}
+                  </div>
+                  <div className="hindi-text">{mantra[language] || mantra.gujarati || mantra.hindi}</div>
+                </div>
+              ))
+            ) : currentMode === 'bhajans' ? (
+              bhajans.map((bhajan, index) => (
+                <div
+                  key={index}
+                  className={`verse glass-panel ${activeItemIndex === index ? 'active-verse' : ''}`}
+                  onClick={() => {
+                    setActiveItemIndex(index);
+                    setIsPlaying(false);
+                    if (audioRef.current) {
+                      audioRef.current.pause();
+                    }
+                  }}
+                >
+                  <div style={{ color: 'var(--secondary)', fontSize: '0.9rem', marginBottom: '10px' }}>
+                    {bhajan.name} {activeItemIndex === index && ` ${t.selected}`}
+                  </div>
+                  <div className="hindi-text">{bhajan[language] || bhajan.gujarati || bhajan.hindi}</div>
+                </div>
+              ))
+            ) : currentMode === 'aartis' ? (
+              aartis.map((verse, index) => (
+                <div key={index} className="verse glass-panel">
+                  <div className="hindi-text">{verse[language] || verse.gujarati || verse.hindi}</div>
+                </div>
+              ))
+            ) : currentMode === 'stutis' ? (
+              <div className="track-selector" style={{ marginBottom: '20px', padding: '0 15px' }}>
+                <select 
+                  value={activeItemIndex} 
+                  onChange={(e) => setActiveItemIndex(Number(e.target.value))}
+                  style={{ width: '100%', padding: '10px', borderRadius: '10px', background: 'rgba(255,255,255,0.1)', color: '#fff', border: '1px solid var(--secondary)' }}
+                >
+                  {stutis.map((item, i) => (
+                    <option key={i} value={i} style={{ background: '#000' }}>{item.name}</option>
+                  ))}
+                </select>
+              </div>
+            ) : currentMode === 'history' ? (
+              <div className="history-section-container">
+                {historyView === 'menu' ? (
+                  <>
+                    <div className="page-header center-header">
+                      <div className="page-subtitle">{t.chooseSection}</div>
+                    </div>
+                    <div className="history-menu-grid">
+                      <button className="history-menu-card glass-panel" onClick={() => { setHistoryView('lifeStory'); triggerHaptic(ImpactStyle.Medium); }}>
+                        <div className="menu-card-icon">📖</div>
+                        <div className="menu-card-content">
+                          <div className="menu-card-title">{t.lifeStory}</div>
+                          <div className="menu-card-subtitle">Life Story & Miracles</div>
+                        </div>
+                      </button>
+                      <button className="history-menu-card glass-panel" onClick={() => { setHistoryView('incidents'); triggerHaptic(ImpactStyle.Medium); }}>
+                        <div className="menu-card-icon">✨</div>
+                        <div className="menu-card-content">
+                          <div className="menu-card-title">{t.incidentIndex}</div>
+                          <div className="menu-card-subtitle">True Incidents Index</div>
+                        </div>
+                      </button>
+                    </div>
+                  </>
+                ) : historyView === 'lifeStory' ? (
+                  <>
+                    <div className="page-header center-header">
+                      <div className="page-subtitle">{t.sacredJourney}</div>
+                    </div>
+                    {historyData.lifeStory.content.map((item) => (
+                      <div key={item.id} className="verse glass-panel">
+                        <div style={{ color: 'var(--secondary)', fontSize: '1.2rem', marginBottom: '15px' }}>
+                          {item.subtitle[language] || item.subtitle.gujarati}
+                        </div>
+                        <div className="hindi-text" style={{ fontSize: '1.1rem', textAlign: 'left' }}>
+                          {item.text[language] || item.text.gujarati}
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                ) : historyView === 'incidents' ? (
+                  <>
+                    <div className="page-header center-header">
+                      <div className="page-subtitle">{t.selectMiracle}</div>
+                    </div>
+
+                    <div className="incidents-grid">
+                      {historyData.incidents.map((incident, idx) => (
+                        <button
+                          key={incident.id}
+                          className={`incident-select-card glass-panel ${activeIncidentIndex === idx ? 'active' : ''}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveIncidentIndex(idx);
+                            setHistoryView('incidentDetail');
+                            triggerHaptic(ImpactStyle.Light);
+                          }}
+                        >
+                          <span className="incident-number">#{idx + 1}</span>
+                          <span className="incident-title-text">{incident.title[language] || incident.title.gujarati}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                ) : historyView === 'incidentDetail' ? (
+                  <div className="selected-incident-viewer-fullscreen active-verse">
+                    <div className="page-header center-header">
+                      <div className="page-subtitle">{t.miracleHistory}</div>
+                    </div>
+                    {activeIncidentIndex !== null && historyData.incidents[activeIncidentIndex] && (
+                      <div className="hindi-text incident-content-full">
+                        {historyData.incidents[activeIncidentIndex].content[language] || historyData.incidents[activeIncidentIndex].content.gujarati}
+                      </div>
+                    )}
+                  </div>
+                ) : null}
+              </div>
+            ) : currentMode === 'videos' ? (
+              <div className="videos-section-container">
+                <div className="videos-grid-flow">
+                  {videos.map((vid) => (
+                    <div key={vid.id} className="video-premium-card glass-panel">
+                      <div className="video-container-wrapper">
+                        <iframe
+                          width="100%"
+                          height="200"
+                          src={`https://www.youtube.com/embed/${vid.youtubeId}?modestbranding=1&rel=0`}
+                          title={vid.title}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                      <div className="video-card-details">
+                        <div className="video-platform-badge">
+                          <span className="youtube-logo">🔴</span> YouTube
+                        </div>
+                        <div className="video-card-title">
+                          {vid[language] || vid.gujarati || vid.hindi}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : currentMode === 'policy' ? (
+              <div className="policy-section-container">
+                <div className="page-header">
+                  <div className="page-title">{policyData.title[language] || policyData.title.english}</div>
+                  <div className="page-subtitle">Privacy & Data Transparency</div>
+                </div>
+
+                <div className="verse glass-panel" style={{ textAlign: 'center', marginBottom: '30px', padding: '15px' }}>
+                  <div style={{ color: 'var(--secondary)', fontSize: '0.85rem', opacity: 0.8 }}>
+                    Last Updated: {policyData.lastUpdated}
+                  </div>
+                </div>
+
+                {policyData.sections.map((section, idx) => (
+                  <div key={idx} className="verse glass-panel">
+                    <div style={{ color: 'var(--secondary)', fontSize: '1.2rem', marginBottom: '15px' }}>
+                      {section.subtitle[language] || section.subtitle.english}
+                    </div>
+                    <div className="hindi-text" style={{ fontSize: '1.1rem', textAlign: 'left' }}>
+                      {section.text[language] || section.text.english}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+          </main>
+        )}
+
+        {/* No separate footer - all is in dashboard */}
       </div>
 
-      <DevotionalLibrary isLibraryOpen={isLibraryOpen} setIsLibraryOpen={setIsLibraryOpen} language={language} startReading={startReading} morningToggle={setMorningNotification} eveningToggle={setEveningNotification} isMorningOn={morningNotification} isEveningOn={eveningNotification} morningTime={morningTime} setMorningTime={setMorningTime} eveningTime={eveningTime} setEveningTime={setEveningTime} />
-      {showSplash && <div className="divine-splash-clean"><img src={backgroundImage} className="splash-full-img" alt="Maa" /></div>}
-    </div>
+      {showSplash && (
+        <div className="divine-splash-clean">
+          <img src={backgroundImage} className="splash-full-img" alt="Divine Aashapura Maa" />
+        </div>
+      )}
+    </>
   );
 }
 
