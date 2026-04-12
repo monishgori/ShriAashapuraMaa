@@ -726,11 +726,11 @@ function App() {
       }
     }
 
-    const currentLines = currentMode === 'chalisa' ? chalisaData[language] :
-                        currentMode === 'mantras' ? mantras[activeItemIndex]?.content[language] :
-                        currentMode === 'bhajans' ? bhajans[activeItemIndex]?.content[language] :
-                        currentMode === 'aartis' ? aartis[activeItemIndex]?.content[language] :
-                        currentMode === 'stutis' ? stutis[activeItemIndex]?.content[language] : [];
+    const currentLines = currentMode === 'chalisa' ? (chalisaData.lyrics?.map(v => v[language] || v.gujarati || v.hindi) || []) :
+                        currentMode === 'mantras' ? (mantras[activeItemIndex]?.content?.[language] || [mantras[activeItemIndex]?.name || '']) :
+                        currentMode === 'bhajans' ? (bhajans[activeItemIndex]?.content?.[language] || [bhajans[activeItemIndex]?.name || '']) :
+                        currentMode === 'aartis' ? (aartis[activeItemIndex]?.content?.[language] || [aartis[activeItemIndex]?.name || '']) :
+                        currentMode === 'stutis' ? (stutis[activeItemIndex]?.content?.[language] || [stutis[activeItemIndex]?.name || '']) : [];
 
     return (
       <div className="lyrics-scroller">
