@@ -4,6 +4,6 @@ export const aartis = [
         name: "MAA ni aarti",
         gujarati: "મા ની આરતી",
         hindi: "माँ की आरती",
-        audio: "/assets/audio/om.mp3"
+        audio: "/assets/audio/Aarti.mp3"
     }
 ];
